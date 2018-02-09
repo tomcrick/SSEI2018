@@ -2,6 +2,8 @@
 \documentclass[sigconf]{acmart}
 \usepackage{graphicx}
 \usepackage{paralist}
+\usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage{url}
 \usepackage[hyphenbreaks]{breakurl}
 
@@ -154,11 +156,12 @@ under the spot for further analysis. Using streaming and restful data,
 the approach can be applied on live data to catch problematic
 conversations once they reach certain length for example.
 
-The remainder of this paper is organised as follows: in section 2, we
-introduce the methodology; section 3 presents the results and key
-visual representations; section 4 gives the discussion; Section 5
-concludes the paper with a summary of potential extensions and
-applications of our work.
+The remainder of this paper is organised as follows: in
+Section~\ref{method}, we introduce the methodology;
+Section~\ref{results} presents the results and key visual
+representations; Section~\ref{discussion} provides the main
+discussion; Section 5 concludes the paper with a summary of potential
+extensions and applications of our work.
 
 
 \section{Methodology}\label{method}
@@ -286,7 +289,25 @@ To examine relationships between users, five network graph properties
 are measured. There were no special case nodes or edges in this graph,
 as observed in the base graph. Graph properties that are used in
 analysing this graph and their contextual interpretations are shown in
-Table ‎2.1.
+Table~\ref{tbl:uucentralitymeasuresinter}.
+
+\begin{table}[!h]
+\centering
+\begin{tabularx}{\columnwidth}{lX}
+\toprule
+\textbf{Measure} & \textbf{Interpretation} \\ 
+\midrule
+{\emph{Indegree}} & Number of users that sent reply to the node \\
+{\emph{Weighted Indegree}} & Total number of received replies \\
+{\emph{Outdegree}} & Number of users that have received a reply from
+                     the node \\ 
+{\emph{Weighted Outdegree}} & Total number of sent replies \\
+{\emph{Edge Weight}}& Number of replies between the connecting nodes\\
+\bottomrule
+\end{tabularx}
+\caption{User-user centrality measures interpretation}
+\label{tbl:uucentralitymeasuresinter}
+\end{table}
 
 \subsection{Connected Components}
 
@@ -309,6 +330,328 @@ the users graph, number of components should not exceed the number of
 watched accounts, although there might be exactly one component due to
 common customers.
 
+
+\section{Results}\label{results}
+
+\subsection{Main Accounts Activity}
+
+As the focus of this section is on customer services, it is necessary
+to investigate classes of posts to examine if they reflect purposes of
+these accounts. First, total collected posts are shown
+Figure~\ref{fig:totalactivity}. What is found is that all selected
+accounts appear to be mostly for customer care services. It can be
+seen in the distribution of posts classes in
+Figure~\ref{fig:accountsactivity}, replies were at least 83.5\% of
+account statuses. This confirms that all chosen accounts are mainly
+used to interact with customers and handling requests and
+questions. Therefore, forthcoming analyses will be based on replies
+only.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/totalactivity.png}
+\caption{Total activity}
+\label{fig:totalactivity}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/accountsactivity.png}
+\caption{Accounts activity}
+\label{fig:accountsactivity}
+\end{figure}
+
+\subsection{Interaction and Users}
+
+Although working hours of CS accounts is important to evaluate
+activity, it is important to measure posts that are directed to those
+accounts from other users and examine them in line with CS
+accounts. Audience and their relations with the accounts can be
+analysed directly from the main graph (i.e. post-post). However, as
+user details are embedded inside post nodes, observing such
+relationships will not simple task to accomplish. Therefore, user-user
+graph was built from the main graph. The resulted graph contains 3,521
+user nodes and 5,938 edges, shown in
+Figure~\ref{fig:userusergraph}. Although post-post relationship cannot
+have weight higher than one, user-user edge weight indicates number of
+posts in one direction, which explains the reduction in number of
+nodes and edges.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/userusergraph.png}
+\caption{User-user graph}
+\label{fig:userusergraph}
+\end{figure}
+
+Based on Table~\ref{tbl:uucentralitymeasuresinter}, summary of the
+graph is presented below in Table~\ref{tbl:uucentralitymeasures}. The
+table says that {\emph{virginmedia}} received that highest number of
+replies from 866 users with an average of 3.05 per user. Also, the
+same account scored highest in number of recipients. The difference
+between indegrees and outdegrees shows that apart from {\emph{o2}},
+all accounts have outdegrees bigger that their
+indegrees. Additionally, total number of sent replies is found to be
+more than the number of received replies. This may reflect that those
+replies were directed to non-reply posts.
+
+\begin{table}[!h]
+\centering
+\begin{tabularx}{\columnwidth}{l|rrc|rrc}
+\toprule
+\textbf{Measure} & \textbf{ind} & \textbf{w.ind} & \textbf{\%} & \textbf{out} & \textbf{w.oud} & \textbf{\%}\\ 
+\midrule
+{\emph{btcare}} & 330 & 995 & 3.02 & 485 & 1317 & 2.72\\
+{\emph{ee}} & 247 & 432 & 1.75 & 470 & 778 & 1.66 \\
+{\emph{giffgagg}} & 77 & 209 & 2.71 & 102 & 247 & 2.42 \\ 
+{\emph{o2}} & 293 & 463 & 1.58 & 260 & 479 & 1.84 \\
+{\emph{skyhelpteam}} & 147 & 254 & 1.73 & 305 & 504 & 1.65\\
+{\emph{virginmedia}} & 866 & 2645 & 3.05 & 1215 & 3421 & 2.82\\
+{\emph{vodaphoneukhelp}} & 166 & 403 & 2.43 & 302 & 660 & 2.19\\
+\bottomrule
+\end{tabularx}
+\caption{Centrality measures of user-user graph}
+\label{tbl:uucentralitymeasures}
+\end{table}
+
+\subsection{Delay}
+
+Observation of active hours provides holistic view of
+activity. Additionally, calculating delays is important to provide
+more detailed view at single correspondences and how long did it take
+for CS to reply to posts and their averages, as shown in
+Figure~\ref{fig:delaymeans} and summarised in
+Table~\ref{tbl:delaystats}. As replies includes timestamp attribute,
+the process searches for CS nodes in the main graph, and measure
+temporal differences between both ending nodes on their out edges.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/delaymeans.png}
+\caption{Delay means for CS accounts}
+\label{fig:delaymeans}
+\end{figure}
+
+\begin{table}[!h]
+\centering
+\begin{tabularx}{\columnwidth}{lrrrr}
+\toprule
+\textbf{Account} & \textbf{mean} & \textbf{stdev} & \textbf{max(hrs)} & \textbf{min(sec)} \\ 
+\midrule
+{\emph{btcare}} & 2.04 & 16.11 & 572.46 & 38\\
+{\emph{ee}} & 1.46 & 3.39 & 19.28 & 27\\
+{\emph{giffgagg}} & 1.22 & 10.25 & 159.97 & 73\\ 
+{\emph{o2}} & 1.14 & 2.66 & 22.48 & 58\\
+{\emph{skyhelpteam}} & 45.04 & 49.16 & 117.21 & 44\\
+{\emph{virginmedia}} & 3.34 & 9.25 & 263.98 & 22\\
+{\emph{vodaphoneukhelp}} & 1.92 & 5.01 & 76.51 & 50\\
+\bottomrule
+\end{tabularx}
+\caption{Summary delays statistics}
+\label{tbl:delaystats}
+\end{table}
+
+\subsection{Connected Components}
+
+Each group of replies represented by a connected component in the
+post-post graph. In total, there were 3,289 conversation
+components. Observing their sizes shows that the smallest component
+consists of one post, while the biggest component includes 81 posts,
+as shown in Figure~\ref{fig:ccsizes}. There were 102 singular
+components, and they all were found belonging to CS accounts, and were
+either original tweets that have no replies or replies with no
+replied-to message available. As covered earlier, missing replies are
+due to deletion or protected accounts. Because they do not have any
+length, single-node components will be excluded from forthcoming
+analyses.
+
+As can be seen in Figure~\ref{fig:ccsizes}, most common size of
+connected components was found to be two nodes with 1,188
+components. Furthermore, edges in this group of components revealed
+that most of these communications were from CS accounts and directed
+to customer's post. However, 25 posts came from customers and had not
+been answered. This may imply that the customer's query has either
+been answered or directed for further private communication.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/ccsizes.png}
+\caption{Connected component sizes}
+\label{fig:ccsizes}
+\end{figure}
+
+It is mportant to note that the size of connected components does not
+necessarily reflect length of conversations, although there is a
+strong correlation between size of component and length of its longest
+path (0.88). These two measures for all connected components are
+pictured in Figure~\ref{fig:ccsizepaths}. As can be seen, longest path
+in the biggest component (81 nodes/posts) was only 1.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/ccsizepaths.png}
+\caption{Size of connected components and their longest paths}
+\label{fig:ccsizepaths}
+\end{figure}
+
+To further explore properties of connected components, biggest 20
+components are visualised in Figure~\ref{fig:20ccpostpostgraph}. The
+findings show that components with very high differences in indegree
+amongst their nodes are mostly originate from CS. This is illustrated
+by the components that are identified by the three big nodes in the
+figure. When observed, they were all tweets of advert. Another
+observation on the biggest component is that it has 81 nodes. Origin
+node was a post by {\emph{o2}} and has an indegree of 80, while the
+rest have indegree of zero, i.e. they were not answered. On the other
+hand, the longest path component was the ranked the third biggest
+component. It was found with a single leaf, and all other nodes along
+the path were found with indegree=1 and outdegree=1, forming a simple
+chain, uniquely coloured in
+Figure~\ref{fig:20ccpostpostgraph}. Additionally, 15 of those
+components were found to have originated from customer accounts, and
+they all take a semi-simple chain.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/20ccpostpostgraph.png}
+\caption{Largest 20 connected components in post-post graph}
+\label{fig:20ccpostpostgraph}
+\end{figure}
+
+Generally, simple chains can be identified where number of edges
+equals length of the longest path in component. There were 2,537
+connected components exist in the form of simple chain, about 80\% of
+components. Additionally, from Figure~\ref{fig:simplechainlengths}, it can be seen that simple
+chains with the length 1 are the most common, and constitute about
+47\% of chains. This is in alignment with the results of connected
+component sizes presented earlier. Also, Table~\ref{tbl:delaystatscl}
+presents summary statistics on chains of individual CS accounts.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/simplechainlengths.png}
+\caption{Simple chain lengths}
+\label{fig:simplechainlengths}
+\end{figure}
+
+\begin{table}[!h]
+\centering
+\begin{tabularx}{\columnwidth}{lrrrrr}
+\toprule
+\textbf{Name} & \textbf{count} & \textbf{max} & \textbf{min} & \textbf{mean} & \textbf{stdev}\\ 
+\midrule
+{\emph{btcare}} & 388 & 19 & 1 & 3.46 & 3.22\\
+{\emph{ee}} & 324 & 9 & 1 & 1.98 & 1.43\\
+{\emph{giffgagg}} & 147 & 12 & 1 & 2.39 & 1.98\\ 
+{\emph{o2}} & 216 & 11 & 1 & 2.53 & 2.26\\
+{\emph{skyhelpteam}} & 252 & 15 & 1 & 2.22 & 1.99\\
+{\emph{virginmedia}} & 959 & 68 & 1 & 3.78 & 4.46\\
+{\emph{vodaphoneukhelp}} & 248 & 39 & 1 & 2.58 & 3.29\\
+\bottomrule
+\end{tabularx}
+\caption{Summary statistics on chain length for CS accounts}
+\label{tbl:delaystatscl}
+\end{table}
+
+\subsection{Coexistence and Competition}
+
+Common connected components can be utilised to investigate competition
+amongst CS accounts. The process is achieved by first identifying
+components that include more than one CS account. The results show
+that there were 39 common components, 38 have two CS accounts, and one
+includes three accounts. The graph presented in
+Figure~\ref{fig:commoncc} shows those components, with each CS account
+given a colour code for identification as the legend clarifies.
+
+\begin{figure*}[htb]
+\centering
+\includegraphics[width=0.6\textwidth]{images/commoncc.png}
+\caption{Common connected components}
+\label{fig:commoncc}
+\end{figure*}
+
+To explore these relationships further, those components were merged
+into another undirected CS-CS graph. Nodes represent CS accounts,
+edges indicate that they have appeared in same component, and edge's
+weight indicate number of times they appeared together, as presented
+in Figure~\ref{fig:coexistencegraph}. Node size indicates degree of
+node to show how many other CS account the node has coexisted with,
+while darkness of node reflects weighted degree. It is noted that
+{\emph{giffgaff}} account was not found in any common conversation.
+
+As can be seen in the graph, {\emph{o2}} was found the only account
+that have shared conversation with all other CS accounts, while
+{\emph{vodafoneukhelp}} was found with least common
+conversations. Nevertheless, weighted degree measure shows that
+{\emph{virginmedia}} was the highest in number of common
+conversations, 21 components, although its degree was only 3. This can
+be explained by weight of edges in the graph. The heaviest edge
+existed between {\emph{virginmedia}} and {\emph{btcare}}, followed by
+the edge between {\emph{virginmedia}} and {\emph{skyhelpteam}}. Also,
+edges of {\emph{o2}} show that it was mostly appeared with
+{\emph{ee}}, and for {\emph{vodafoneukhelp}} it was {\emph{ee}}.
+
+The observation of edges and their weights can provide insights to
+uncover more specific service areas within the business domain. This
+was found clear when modularity of the graph was examined. The result
+has unfolded into two communities, as shown in
+Figure~\ref{fig:modularityclassgraph}. Also, general knowledge about
+those CS teams; {\emph{ee}}, {\emph{o2}}, and {\emph{vodafoneukhelp}}
+belong to business domain that is mostly focused on mobile services,
+while {\emph{skyhelpteam}}, {\emph{virginmedia}}, and {\emph{btcare}}
+are mostly known to be focusing on home internet and landline
+services.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/coexistencegraph.png}
+\caption{CS-CS coexistence graph}
+\label{fig:coexistencegraph}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/modularityclassgraph.png}
+\caption{Modularity class graph}
+\label{fig:modularityclassgraph}
+\end{figure}
+
+The results encouraged us to further evaluate if presence of
+competitor would influence the speed of which CS team reply. Although
+the expectation was to see improvement, this was not the case with one
+group of CS teams, as Figure~\ref{fig:diffdelaymeans} shows. Rather
+strangely, drop in performance was found amongst those CS belong to
+the same community.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/diffdelaymeans.png}
+\caption{Modularity class graph}
+\label{fig:diffdelaymeans}
+\end{figure}
+
+% To better understand the context of conversations in those common
+% components, text analysis was carried out for each CS account. The
+% attempt is a try to find what the customer have said that made the CS
+% team participate in the conversation. Therefore, posts of CS accounts
+% were eliminated, and the analysed texts include posts of customers
+% only. Presentation of the result could be shown in table of statics,
+% rather, wordcloud visualisation was used for each CS account. Initial
+% results show that mentions were found very high in number. Therefore,
+% another one was generated after removing mentions, results are
+% presented in Figure ‎2.17.
+
+% Interestingly, the first set of results (with mentions) provide
+% explanation and insights on edge weights shown in
+% Figure~\ref{fig:20ccpostpostgraph}. Taking one example, the edge
+% {\emph{virginmedia}}--{\emph{btcare}} was found the heaviest. However,
+% the first set of wordclouds for both show that {\emph{virginmedia}}
+% was the mostly mentioned by customers. Same conclusion was found for
+% the edge {\emph{skyhelpteam}}--{\emph{virginmedia}}.
+
+% The other set, with mentions removed, may be used to identify some
+% keywords for what could possibly be main issues, problem, or complains
+% that might be of advantageous to other business rivals.
 
 
 \section{Acknowledgements}

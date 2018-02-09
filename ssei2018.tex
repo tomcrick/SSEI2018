@@ -160,8 +160,8 @@ The remainder of this paper is organised as follows: in
 Section~\ref{method}, we introduce the methodology;
 Section~\ref{results} presents the results and key visual
 representations; Section~\ref{discussion} provides the main
-discussion; Section 5 concludes the paper with a summary of potential
-extensions and applications of our work.
+discussion; Section~\ref{conclusions} concludes the paper with a
+summary of potential extensions and applications of our work.
 
 
 \section{Methodology}\label{method}
@@ -480,7 +480,7 @@ been answered or directed for further private communication.
 \label{fig:ccsizes}
 \end{figure}
 
-It is mportant to note that the size of connected components does not
+It is important to note that the size of connected components does not
 necessarily reflect length of conversations, although there is a
 strong correlation between size of component and length of its longest
 path (0.88). These two measures for all connected components are
@@ -521,11 +521,12 @@ they all take a semi-simple chain.
 Generally, simple chains can be identified where number of edges
 equals length of the longest path in component. There were 2,537
 connected components exist in the form of simple chain, about 80\% of
-components. Additionally, from Figure~\ref{fig:simplechainlengths}, it can be seen that simple
-chains with the length 1 are the most common, and constitute about
-47\% of chains. This is in alignment with the results of connected
-component sizes presented earlier. Also, Table~\ref{tbl:delaystatscl}
-presents summary statistics on chains of individual CS accounts.
+components. Additionally, from Figure~\ref{fig:simplechainlengths}, it
+can be seen that simple chains with the length 1 are the most common,
+and constitute about 47\% of chains. This is in alignment with the
+results of connected component sizes presented earlier. Also,
+Table~\ref{tbl:delaystatscl} presents summary statistics on chains of
+individual CS accounts.
 
 \begin{figure}[htb]
 \centering
@@ -654,11 +655,89 @@ the same community.
 % that might be of advantageous to other business rivals.
 
 
-\section{Acknowledgements}
+\section{Discussion}\label{discussion}
 
-This work has been supported by a doctoral research scholarship for
-Nabeel Albishry from King Abdulaziz University, Kingdom of Saudi
-Arabia.
+The analysis of selected CS accounts started with measuring statuses
+type to testify whether the CS account are dedicated for customer
+services or not. This step is important to confirm that accounts are
+similar in their purposes, hence comparison would be fair and valid.
+
+Volume of account activity and served customers and their interactions
+with the account give measures on popularity of the account on Twitter
+and may help make inferences on the size of their customers who are on
+Twitter. From these three measures, {\emph{virginmedia}} was found with
+highest volume of posts, the least diverse in terms of type of posts
+(99.7\% were replies) and has the highest number of customers.
+
+The results also show that high availability, i.e. longer activity
+hours, was not found to significantly improve speed of reply to
+customers. Also, average delays of accounts ranged between 1.14 and
+3.34 hours, apart from {\emph{skyhelpteam}} which was found with an average
+delay of 45.04 hours. This may indicate a management issue for the
+team, such as unclear social media strategy and team size. 
+
+In the analysis of common/shared connected components, competition was
+found to have taken place amongst accounts. Particularly, in the case
+of {\emph{virginmedia}} and {\emph{btcare}} the competition was
+obvious and severe. Although no record shows that CS team has been in
+a direct engagement with a competitor, the conversations were directed
+to customers. In all cases, customers were found to be initiators of
+competing conversations by making use of Twitter mention feature to
+bring different rivals into conversations. In contrast to phone or
+email, complaints that are taken to social media are perceived as more
+damaging to the business reputation. Therefore, improvement in the
+speed of response was witnessed in few cases where business rivals
+appeared in the same conversation. This indicates that the platform
+helps customers tend to take the advantage of Twitter to win good
+deals or speed resolving their problems. Additionally, although all
+accounts were from telecommunication domain, competition analysis
+uncovered more specialised communities.
+
+
+\section{Conclusions}\label{conclusions}
+
+The paper has presented a framework for evaluating customer services
+performance and their communities on Twitter. Network graphs
+properties lay in core of all analyses to obtain the presented
+results, and were applied on some selected accounts in the telecoms
+business domain in the UK.
+
+As shown in the Section~\ref{method}, there are two preliminary
+techniques that need to be applied prior to starting the analysis
+phase. First, the recursive reply-chain data collection is a crucial
+stage in obtaining more accurate results. The importance of this stage
+stems from the fact that it fills the gaps and improve connectivity of
+graphs. Second, construction of the initial graph from replies and the
+removal of floating isolated nodes. Then, it is a matter of correctly
+choose needed information and attach them as attributes to nodes. In
+this study, information included were id of post, timestamps, screen
+name, text and watched flag. Nevertheless, the framework can be
+extended to include other information such retweets.
+
+Furthermore, once the main graph is constructed, other graphs could be
+generated based on purposes of analysis. The connected components
+section showed how conversations of certain features can be extracted
+for further analysis. Examples presented in the section include
+lengths of conversations and coexistence of business rivals.
+
+The presented framework can be used by service providers to evaluate
+their social media accounts, as well as make observations about their
+rivals within the domain. Moreover, with the emerging practice of
+signing reply with member initials, this practice can be exploited to
+extend this framework. This extension could help in estimating team
+sizes, working shifts and to evaluate individual team members. Another
+application would be to identify gaps, competitions, challenges and
+opportunities in services that can be used in drawing strategies for
+start-ups for example. The approach can also be applied to other
+domains or contexts, such non-profit or government institutes. Also,
+it can be used for group of users, such as celebrities and their
+direct and indirect confrontations on Twitter.
+
+% \section*{Acknowledgements}
+
+% This work has been supported by a doctoral research scholarship for
+% Nabeel Albishry from King Abdulaziz University, Kingdom of Saudi
+% Arabia.
 
 
 \bibliographystyle{ACM-Reference-Format}

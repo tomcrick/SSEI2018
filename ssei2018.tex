@@ -181,12 +181,12 @@ runs iteratively to obtain reply-chains, process them and save them to
 database. Once the data collection phase is accomplished, a giant
 graph that includes all reply nodes and edges is constructed to conduct analyses.
 
-%\begin{figure}[htb]
-%\centering
-%\includegraphics[width=\columnwidth]{images/frameworkstructure.png}
-%\caption{Overall framework structure}
-%\label{fig:frameworkstructure}
-%\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/frameworkstructure.png}
+% \caption{Overall framework structure}
+% \label{fig:frameworkstructure}
+% \end{figure}
 
 \subsection{Streaming}
 
@@ -195,30 +195,21 @@ three steps. First, a stream endpoint is opened to catch activities of
 accounts under investigation, those accounts will be referred to as
 `watched' or `CS' (Customer Service) accounts. Twitter streaming API
 is designed to return tweets created by the user, their retweets,
-replies to tweets created by the user, and retweets of their
+replies directed to their tweets, and retweets of their
 tweets. However, the stream does not include tweets mentioning the
-user, and replies/retweets by protected users. The first phase of data
-collection phase started with collecting those activities, and has
-accumulated about 15,000 tweets.
+user, and replies/retweets by protected users. 
 
 \subsection{Reply Chains}
 
 Returned statuses from the Streaming API may represent reply to
-statuses that have not been collected previously. We found that most
-missing statuses were either posted before data collection started,
-initial chain root that was not captured by the Stream API
-(e.g. mentions), or the user account is protected. This issue could
-hugely affect the data and their
-analysis. Figure~\ref{fig:datacollectionphases} illustrates common
-scenario that involves a group of reply chains after the phases of
-data collection; sub-figure (a) shows five reply-chains that were
-returned by the stream in their original structure. However, the
-second phase returned one reply that connected the chains to become
-one component, as shown in sub-figure (b).
+statuses that have not been collected previously. It was found that most
+missing statuses were either posted before data collection started, mentions, 
+or the user account is protected. This issue could have a huge effect on 
+analysis. 
 
 Therefore, once statuses are returned from the stream endpoint, they
 are processed to identify missing replied-to posts, and REST API is
-used to collect them. This process is recursively done for newly
+used to collect them. This process runs recursively for newly
 collected replies until no further replies are available. Unavailable
 statuses are often result from either deletion or protected accounts.
 
@@ -228,25 +219,24 @@ edges by 43\% and 62\%, respectively. This increase in connections has
 resulted in merging 176 components into others, which improved
 connectivity of the graph and, hence, accuracy of dependent analyses.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/datacollectionphases.png}
-\caption{(a) First phase of data collection and (b) second phase of data
-collection}
-\label{fig:datacollectionphases}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/datacollectionphases.png}
+% \caption{(a) First phase of data collection and (b) second phase of data
+% collection}
+% \label{fig:datacollectionphases}
+% \end{figure}
 
 
 \subsection{Graph Construction}
 
 \subsubsection{Main Graph}
 
-Constructing graphs from the collected statuses is in core of all
-analyses presented in this chapter. First, a base graph\footnote{The
-terms `main graph' and `base graph' are used interchangeably.} is
-generated containing all replies and the needed data. Nodes represent
-post ids, while edges indicate replying direction. Other information
-of statuses are added as attributes to nodes. The information used in
+Constructing graphs is the core of analyses presented in this work. 
+First, a base graph\footnote{The terms `main graph' and `base graph' are 
+used interchangeably.} is generated containing all replies and the needed data. 
+Nodes represent post ids, while edges indicate replying direction. Other 
+information of statuses are added as attributes to nodes. The information used in
 this study are screen name of the user, timestamp of the reply, text,
 and `watched' entity, to identify CS accounts. An example graph is
 shown in Figure~\ref{fig:replychaingraph}. Properties of this graph

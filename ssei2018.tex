@@ -311,7 +311,7 @@ The base graph consists of many number of subgraphs, each of which
 represent related replies, i.e. one conversation entity. Investigating
 connected components plays a major role in identifying conversations
 for accounts. They are used to measure size of conversation, their
-sizes/depths, and to identify shared conversations between watched
+depths, and to identify shared conversations between watched
 accounts. To extract conversations that user or users were engaged in,
 the process iterates through nodes in each component and examine the
 `name' attributes. As soon as the search is matched, no further nodes
@@ -329,19 +329,17 @@ common customers.
 
 \section{Results}\label{results}
 
-\subsection{Main Accounts Activity}
+\subsection{Accounts Activity}
 
-As the focus of this section is on customer services, it is necessary
-to investigate classes of posts to examine if they reflect purposes of
-these accounts. First, total collected posts are shown
-Figure~\ref{fig:totalactivity}. What is found is that all selected
-accounts appear to be mostly for customer care services. It can be
-seen in the distribution of posts classes in
-Figure~\ref{fig:accountsactivity}, replies were at least 83.5\% of
-account statuses. This confirms that all chosen accounts are mainly
+Overall evaluation was carried to measure accounts activity. As shown in
+Figure~\ref{fig:totalactivity}, {\emph{virginmedia}} was found the most 
+active CS account by far. As the focus of this section is on customer services, 
+it is necessary to investigate post types to examine purposes of
+these accounts. The result shows that replies were at least 83.5\% of
+accounts activity. This confirms that all chosen accounts are mainly
 used to interact with customers and handling requests and
 questions. Therefore, forthcoming analyses will be based on replies
-only.
+only. 
 
 \begin{figure}[htb]
 \centering
@@ -350,12 +348,12 @@ only.
 \label{fig:totalactivity}
 \end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/accountsactivity.png}
-\caption{Accounts activity}
-\label{fig:accountsactivity}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/accountsactivity.png}
+% \caption{Accounts activity}
+% \label{fig:accountsactivity}
+% \end{figure}
 
 \subsection{Interaction and Users}
 

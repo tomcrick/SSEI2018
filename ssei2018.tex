@@ -255,7 +255,7 @@ connected component by themselves, which affects accuracy of results.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\columnwidth]{images/replychaingraph.png}
-\caption{Illustrative example of a reply chain graph and base graph}
+\caption{Example of a reply chain graph}
 \label{fig:replychaingraph}
 \end{figure}
 
@@ -264,12 +264,11 @@ connected component by themselves, which affects accuracy of results.
 Because most analyses focus on relationships between reply posts, they
 were applied on the base graph. Nevertheless, to examine relationships
 amongst users, another graph is generated from the base graph. This
-process is conducted by iterating through edges linking reply posts,
+process is carried out by iterating through edges linking reply posts,
 extracting users' information, and constructing users graph
-accordingly. Users information are embedded in node attributes. In the
-perspective of this study, only two attributes are used, names and the
-`watched' values. Nodes are constructed from user names, and the
-attribute of `watched' is also added. For edges, their weights
+accordingly. In the context of this study, only two attributes are used, 
+screen names and `watched' values. While nodes represent screen names 
+`watched' valued are added as attribute of nodes. For edges, their weights 
 indicate number of replies sent from origin node (sender) to target
 node (receiver), therefore, the user graph is directed. Applying this
 process on the example in Figure~\ref{fig:replychaingraph} results in
@@ -278,7 +277,7 @@ the users graph shown in Figure~\ref{fig:usersgraph}.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\columnwidth]{images/usersgraph.png}
-\caption{Example of users' graph extracted from the previous base graph}
+\caption{Example of users' graph extracted from base graph}
 \label{fig:usersgraph}
 \end{figure}
 

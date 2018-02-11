@@ -414,8 +414,10 @@ Observation of active hours provides an overall view of
 account activity. However, calculating delays is important to provide
 more insights on performance of CS team. As reply nodes in the base graph (post-post)
 include timestamp attribute, measuring delay was acheived by calcuating temporal
-differences between end nodes on each edge. 
-Table~\ref{tbl:delaystats} shows descriptive statistics for CS account delays.
+differences between end nodes on each edge. Table~\ref{tbl:delaystats} 
+shows descriptive statistics for CS account delays. Interestingly, 
+{\emph{skyhelpteam}} was found with an average delay of 45.04 hours,
+although rest of the CS accounts' delay ranged between 1.14 and 3.34 hours. 
 
 % \begin{figure}[htb]
 % \centering
@@ -428,7 +430,7 @@ Table~\ref{tbl:delaystats} shows descriptive statistics for CS account delays.
 \centering
 \begin{tabularx}{\columnwidth}{lrrrr}
 \toprule
-\textbf{Account} & \textbf{mean} & \textbf{stdev} & \textbf{max(hrs)} & \textbf{min(sec)} \\ 
+\textbf{Account} & \textbf{mean} & \textbf{stdev} & \textbf{max} & \textbf{min(sec)} \\ 
 \midrule
 {\emph{btcare}} & 2.04 & 16.11 & 572.46 & 38\\
 {\emph{ee}} & 1.46 & 3.39 & 19.28 & 27\\
@@ -443,34 +445,36 @@ Table~\ref{tbl:delaystats} shows descriptive statistics for CS account delays.
 \label{tbl:delaystats}
 \end{table}
 
-\subsection{Connected Components}
+\subsection{Conversation Components}
 
-Each group of replies represented by a connected component in the
-post-post graph. In total, there were 3,289 conversation
-components. Observing their sizes shows that the smallest component
-consists of one post, while the biggest component includes 81 posts,
-as shown in Figure~\ref{fig:ccsizes}. There were 102 singular
-components, and they all were found belonging to CS accounts, and were
-either original tweets that have no replies or replies with no
-replied-to message available. As covered earlier, missing replies are
-due to deletion or protected accounts. Because they do not have any
-length, single-node components will be excluded from forthcoming
+As covered in the mehtodology, each connected component in the post-post 
+graph represent a conversation entity that includes related replies. 
+In this dataset, there were 3,289 conversation components with various number
+of replies. Observsation of their sizes shows that the smallest component
+consists of one post, while the biggest component contains 81 posts. 
+Furthermore, the number of one-post components was 102, and they were all 
+found belonging to CS accounts. Examining those singular components revealed that 
+they were either original tweets that have no replies or replies with no
+replied-to post available. As covered earlier, missing replies are those that 
+could not be captured due to a deletion or their posting account was protected. 
+Because they do not have any length, and hence do not represent an examinable
+conversation, single-node components will be excluded from forthcoming
 analyses.
 
-As can be seen in Figure~\ref{fig:ccsizes}, most common size of
-connected components was found to be two nodes with 1,188
-components. Furthermore, edges in this group of components revealed
+Additionally, most common size of connected components was found to be two nodes. 
+They were 1,188 components and the direction of their edges revealed
 that most of these communications were from CS accounts and directed
-to customer's post. However, 25 posts came from customers and had not
-been answered. This may imply that the customer's query has either
-been answered or directed for further private communication.
+to customer's post. However, 25 of those conversations were initiated by customers. 
+As they are in two-node components, this shows that those posts have not been 
+answered by CS. Although other means of communications could have been used, such as 
+direct messages, there were no visible sign of such interaction.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/ccsizes.png}
-\caption{Connected component sizes}
-\label{fig:ccsizes}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/ccsizes.png}
+% \caption{Connected component sizes}
+% \label{fig:ccsizes}
+% \end{figure}
 
 It is important to note that the size of connected components does not
 necessarily reflect length of conversations, although there is a

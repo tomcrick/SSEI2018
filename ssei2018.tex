@@ -175,11 +175,13 @@ summary of potential extensions and applications of our work.
 
 \section{Methodology}\label{method}
 
-The approach in this study consists of two main steps; data
-collection phases and graphs construction. The data collection
-runs iteratively to obtain reply-chains, process them and save them to
+Inspired by the work in ~\cite{Cogan2012}, the approach in this study consists of 
+two main steps; data collection phases and graphs construction. The data 
+collection runs iteratively to obtain reply-chains, process them and save them to
 database. Once the data collection phase is accomplished, a giant
 graph that includes all reply nodes and edges is constructed to conduct analyses.
+Technically, NetworkX package ~\cite{Hagberg2008} was used in graph construction, 
+while Gephi ~\cite{Bastian2009} served as an excellent tools for visualisation.  
 
 % \begin{figure}[htb]
 % \centering
@@ -229,7 +231,7 @@ connectivity of the graph and, hence, accuracy of dependent analyses.
 
 
 \subsection{Graph Construction}
-
+Following data collection, two graphs are generated using  
 \subsubsection{Main Graph}
 
 Constructing graphs is the core of analyses presented in this work. 
@@ -592,7 +594,7 @@ edges of {\emph{o2}} show that it was mostly appeared with
 
 The observation of edges and their weights can provide insights to
 uncover more specific service areas within the business domain. This
-was found clear when modularity of the graph was examined. The result
+was found clear when modularity of the graph was examined ~\cite{Blondel2008}. The result
 has unfolded into two communities, as shown in
 Figure~\ref{fig:modularityclassgraph}. Also, general knowledge about
 those CS teams; {\emph{ee}}, {\emph{o2}}, and {\emph{vodafoneukhelp}}

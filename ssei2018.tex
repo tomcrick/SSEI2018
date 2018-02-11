@@ -408,7 +408,7 @@ replies were directed to non-reply posts.
 \label{tbl:uucentralitymeasures}
 \end{table}
 
-\subsection{Delay}
+\subsection{Delay}\label{results_delay}
 
 Observation of active hours provides an overall view of
 account activity. However, calculating delays is important to provide
@@ -550,13 +550,15 @@ individual CS accounts.
 
 \subsection{Coexistence and Competition}
 
-Common connected components can be utilised to investigate competition
-amongst CS accounts. The process is achieved by first identifying
-components that include more than one CS account. The results show
-that there were 39 common components, 38 have two CS accounts, and one
-includes three accounts. The graph presented in
-Figure~\ref{fig:commoncc} shows those components, with each CS account
-given a colour code for identification as the legend clarifies.
+Connected components were utilised to investigate competition amongst 
+CS accounts. This was achieved by first identifying components that include 
+more than one CS account. For each connected component, notes are 
+checked in turn to examine their names. Components with more than one name
+are then marked as coexistence component. The results show that there were 
+39 common components, 38 have two CS accounts, and one includes three 
+accounts. The graph presented in Figure~\ref{fig:commoncc} shows those 
+components, with each CS account given a colour code for identification as 
+the legend clarifies.
 
 \begin{figure*}[htb]
 \centering
@@ -565,22 +567,24 @@ given a colour code for identification as the legend clarifies.
 \label{fig:commoncc}
 \end{figure*}
 
-To explore these relationships further, those components were merged
-into another undirected CS-CS graph. Nodes represent CS accounts,
-edges indicate that they have appeared in same component, and edge's
-weight indicate number of times they appeared together, as presented
-in Figure~\ref{fig:coexistencegraph}. Node size indicates degree of
-node to show how many other CS account the node has coexisted with,
-while darkness of node reflects weighted degree. It is noted that
-{\emph{giffgaff}} account was not found in any common conversation.
+To explore these relationships further, a specific users graph was constructed 
+based on those components. Construction of this graph follows similar steps used in 
+customer-CS graph. However, as CS accounts do not have direct engagement 
+with each other, edges in this graph are undirected and their weights indicate number 
+of times they appeared together in the same conversation component. 
+The resulted CS-CS graph is shown in Figure~\ref{fig:coexistencegraph}, where 
+node size indicates degree of node to show how many other CS accounts the node 
+has coexisted with, while darkness of node reflects weighted degree to show the 
+total frequency of coexistence for the node.   
 
-As can be seen in the graph, {\emph{o2}} was found the only account
-that have shared conversation with all other CS accounts, while
+First observation on the graph is that {\emph{giffgaff}} account was not found in 
+any common conversation. In contrast, {\emph{o2}} was the only account
+that have shared conversations with all other CS accounts, while
 {\emph{vodafoneukhelp}} was found with least common
 conversations. Nevertheless, weighted degree measure shows that
 {\emph{virginmedia}} was the highest in number of common
-conversations, 21 components, although its degree was only 3. This can
-be explained by weight of edges in the graph. The heaviest edge
+conversations, 21 components, although its degree tells that those 
+conversations were shared with only 3 other CS teams. The heaviest edge
 existed between {\emph{virginmedia}} and {\emph{btcare}}, followed by
 the edge between {\emph{virginmedia}} and {\emph{skyhelpteam}}. Also,
 edges of {\emph{o2}} show that it was mostly appeared with
@@ -611,19 +615,19 @@ services.
 \label{fig:modularityclassgraph}
 \end{figure}
 
-The results encouraged us to further evaluate if presence of
-competitor would influence the speed of which CS team reply. Although
-the expectation was to see improvement, this was not the case with one
-group of CS teams, as Figure~\ref{fig:diffdelaymeans} shows. Rather
-strangely, drop in performance was found amongst those CS belong to
-the same community.
+Furthermore, using similar approach that was used in \ref{results_delay}, 
+delay was measured in those components to evaluate if presence of competitor 
+has influence on how quick CS team response. Interestingly, improvement of
+26\%, 43\% and 72\% were observed for {\emph{virginmedia}},{\emph{btcare}}
+and {\emph{skyhelpteam}}, respectively. Rather strangely, for the other 
+three companies, the average delay showed a drop by at least 9\%.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/diffdelaymeans.png}
-\caption{Modularity class graph}
-\label{fig:diffdelaymeans}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/diffdelaymeans.png}
+% \caption{Modularity class graph}
+% \label{fig:diffdelaymeans}
+% \end{figure}
 
 % To better understand the context of conversations in those common
 % components, text analysis was carried out for each CS account. The

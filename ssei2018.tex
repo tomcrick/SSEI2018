@@ -476,34 +476,34 @@ direct messages, there were no visible sign of such interaction.
 % \label{fig:ccsizes}
 % \end{figure}
 
+\subsection{Component Size and Longest Path}
+
 It is important to note that the size of connected components does not
 necessarily reflect length of conversations, although there is a
 strong correlation between size of component and length of its longest
-path (0.88). These two measures for all connected components are
-pictured in Figure~\ref{fig:ccsizepaths}. As can be seen, longest path
-in the biggest component (81 nodes/posts) was only 1.
+path (0.88). As can be seen in Figure~\ref{fig:ccsizepaths}, many components
+measures are positioned near perfect diagonal line. Interestingly, the 
+longest path in the biggest component (81 nodes/posts) was only 1.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\columnwidth]{images/ccsizepaths.png}
-\caption{Size of connected components and their longest paths}
+\caption{Size of components and their longest paths}
 \label{fig:ccsizepaths}
 \end{figure}
 
 To further explore properties of connected components, biggest 20
-components are visualised in Figure~\ref{fig:20ccpostpostgraph}. The
-findings show that components with very high differences in indegree
-amongst their nodes are mostly originate from CS. This is illustrated
-by the components that are identified by the three big nodes in the
-figure. When observed, they were all tweets of advert. Another
-observation on the biggest component is that it has 81 nodes. Origin
-node was a post by {\emph{o2}} and has an indegree of 80, while the
-rest have indegree of zero, i.e. they were not answered. On the other
-hand, the longest path component was the ranked the third biggest
-component. It was found with a single leaf, and all other nodes along
-the path were found with indegree=1 and outdegree=1, forming a simple
-chain, uniquely coloured in
-Figure~\ref{fig:20ccpostpostgraph}. Additionally, 15 of those
+components, shown in Figure~\ref{fig:20ccpostpostgraph}, were examined. 
+The findings show that components with very high variations in indegree
+amongst their nodes are mostly originate from CS. Examples of this claim 
+is illustrated by the three big components in the figure. When observed, they 
+were found featuring tweets of advert. Another observation on the biggest 
+component is that origin node was a post by {\emph{o2}} and 
+has an indegree of 80, while rest of the nodes have indegree of zero, i.e. they 
+were not answered. On the other hand, the longest path component was ranked the 
+third biggest component. It was found with a single leaf, and all other nodes along
+the path were found with indegree=1 and outdegree=1, forming what we call {\emph{simple
+chain}}, uniquely coloured in Figure~\ref{fig:20ccpostpostgraph}. Additionally, 15 of those
 components were found to have originated from customer accounts, and
 they all take a semi-simple chain.
 
@@ -515,21 +515,19 @@ they all take a semi-simple chain.
 \end{figure}
 
 Generally, simple chains can be identified where number of edges
-equals length of the longest path in component. There were 2,537
-connected components exist in the form of simple chain, about 80\% of
-components. Additionally, from Figure~\ref{fig:simplechainlengths}, it
-can be seen that simple chains with the length 1 are the most common,
-and constitute about 47\% of chains. This is in alignment with the
-results of connected component sizes presented earlier. Also,
-Table~\ref{tbl:delaystatscl} presents summary statistics on chains of
+equals length of the longest path in component. Simple chains account for 80\%
+of the connected components in graph, of which 47\% were found 
+with the length of 1. This is in alignment with the
+results of connected component sizes presented earlier. Finally,
+Table~\ref{tbl:delaystatscl} presents statistics on chains of
 individual CS accounts.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/simplechainlengths.png}
-\caption{Simple chain lengths}
-\label{fig:simplechainlengths}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/simplechainlengths.png}
+% \caption{Simple chain lengths}
+% \label{fig:simplechainlengths}
+% \end{figure}
 
 \begin{table}[!h]
 \centering

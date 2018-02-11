@@ -175,7 +175,7 @@ posts and their sentiment, the framework helps in identifying
 important post conversations that can then be interrogated further by
 analysts or decision makers. With the high volume of activity on
 Twitter, the framework helps to easily identify key issues further
-analysis. Furthermore, by using streaming and restful data, this
+analysis. Furthermore, by using streaming and RESTful data, this
 approach can be applied to live data to catch problematic
 conversations before they reach certain thresholds.
 
@@ -189,13 +189,15 @@ discussion of potential extensions and wider application of this work.
 
 \section{Methodology}\label{method}
 
-Inspired by the work in ~\cite{Cogan2012}, the approach in this study consists of 
-two main steps; data collection phases and graphs construction. The data 
-collection runs iteratively to obtain reply-chains, process them and save them to
-database. Once the data collection phase is accomplished, a giant
-graph that includes all reply nodes and edges is constructed to conduct analyses.
-Technically, NetworkX package ~\cite{Hagberg2008} was used in graph construction, 
-while Gephi ~\cite{Bastian2009} served as an excellent tools for visualisation.  
+Inspired by the approach taken by Cogan et al.~\cite{Cogan2012}, this
+study consists of two main steps: the data collection phases and the
+graph construction. The data collection runs iteratively to obtain
+reply chains, process them and save them to a database. Once the data
+collection phase is completed, a large graph that includes all reply
+nodes and edges is constructed to conduct the initial analysis. The
+NetworkX Python package~\cite{Hagberg2008} was used for the graph
+construction, while Gephi~\cite{Bastian2009} provided a range of tools
+for visualisation.
 
 % \begin{figure}[htb]
 % \centering
@@ -204,50 +206,53 @@ while Gephi ~\cite{Bastian2009} served as an excellent tools for visualisation.
 % \label{fig:frameworkstructure}
 % \end{figure}
 
-\subsection{Context: UK Telecoms business}
+\subsection{Case Study: UK Telecoms Industry}
 
-The dataset contains tweets and related replies for seven UK telecoms 
-companies; BT, EE, GiffGaff, O2, Sky, Virgin Media and Vodaphone. 
-The choices were intended to represent companies with various sizes, 
-history and provided services. While few companies were found with 
-one account on Twitter, some of them have multiple accounts. In those 
-cases, dedicated customer services accounts are pointed out in the bio 
-of the company’s other accounts. Therefore, as the focus of the study 
-is on customer services on Twitter, data were collected from either 
-company’s sole handler or its dedicated customer services one. 
-For clarification, names throughout the paper refer to Twitter handlers 
-rather than official company brand names.    
+The dataset contains tweets and related replies for seven well-known
+UK telecoms companies: BT, EE, giffgaff, O2, Sky, Virgin Media and
+Vodaphone.  The choices were intended to represent companies of
+various sizes, history and range of services provided. While a few
+companies were found with one account on Twitter, some of them have
+multiple accounts alongside the primary Twitter account. In those
+instances, the dedicated customer services accounts were indicated in
+the biography of the company’s other accounts. Therefore, as the focus
+of the study is on customer services on Twitter, data were collected
+from either company’s primary account or its dedicated customer
+services one (N.B. names throughout the paper refer to Twitter account
+handles rather than official company brand names).
 
 \subsection{Streaming}
 
-To ensure we have as much data as possible, data collection takes
-three steps. First, a stream endpoint is opened to catch activities of
-accounts under investigation, those accounts will be referred to as
-`watched' or `CS' (Customer Service) accounts. Twitter streaming API
-is designed to return tweets created by the user, their retweets,
-replies directed to their tweets, and retweets of their
-tweets. However, the stream does not include tweets mentioning the
-user, and replies/retweets by protected users. 
+To ensure we were able to collect as much data as possible, the data
+collection comprised of three steps. First, a stream endpoint is
+opened to catch activities of accounts under investigation, those
+accounts will be referred to as `watched' or `CS' (customer service)
+accounts. The Twitter Streaming
+API\footnote{\url{https://developer.twitter.com/en/docs}} is designed
+to return tweets created by the user, their retweets, replies directed
+to their tweets, and retweets of their tweets. However, the stream
+does not include tweets mentioning the user, and replies/retweets by
+protected users.
 
 \subsection{Reply Chains}
 
 Returned statuses from the Streaming API may represent reply to
-statuses that have not been collected previously. It was found that most
-missing statuses were either posted before data collection started, mentions, 
-or the user account is protected. This issue could have a huge effect on 
-analysis. 
-
+statuses that have not been collected previously. It was found that
+most missing statuses were either posted before the data collection
+started, mentions, or that the user account is protected. Naturally,
+this issue could have a huge impact on the quality of the analysis. 
 Therefore, once statuses are returned from the stream endpoint, they
-are processed to identify missing replied-to posts, and REST API is
-used to collect them. This process runs recursively for newly
+are processed to identify missing replied-to posts, and the REST API
+is used to collect them. This process runs recursively for newly
 collected replies until no further replies are available. Unavailable
-statuses are often result from either deletion or protected accounts.
+statuses are often results from either deletion or protected accounts.
 
-Analysis of changes on the graph after the second phase of data
+An analysis of changes on the graph after the second phase of data
 collection shows that there were increases in the number of nodes and
 edges by 43\% and 62\%, respectively. This increase in connections has
 resulted in merging 176 components into others, which improved
-connectivity of the graph and, hence, accuracy of dependent analyses.
+connectivity of the graph and, thus, accuracy of the dependent
+analyses.
 
 % \begin{figure}[htb]
 % \centering
@@ -262,25 +267,27 @@ connectivity of the graph and, hence, accuracy of dependent analyses.
 
 \subsubsection{Main Graph}
 
-Constructing graphs is the core of analyses presented in this work. 
-First, a base graph\footnote{The terms `main graph' and `base graph' are 
-used interchangeably.} is generated containing all replies and the needed data. 
-Nodes represent post ids, while edges indicate replying direction. Other 
-information of statuses are added as attributes to nodes. The information used in
-this study are screen name of the user, timestamp of the reply, text,
-and `watched' entity, to identify CS accounts. An example graph is
-shown in Figure~\ref{fig:replychaingraph}. Properties of this graph
-are constrained by how replies relate to each other. In other words,
-no edge is expected to have weight value other than 1. Also, no reply
+Graph construction is the foundation of the analysis presented in this
+paper.  First, a base graph\footnote{The terms `main graph' and `base
+graph' are used interchangeably.} is generated containing all replies
+and the needed data.  Nodes represent post IDs, while edges indicate
+replying direction. Other information of statuses are added as
+attributes to nodes. The information used in this study are screen
+name of the user, timestamp of the reply, text, and `watched' entity,
+to identify CS accounts; an example graph is shown in
+Figure~\ref{fig:replychaingraph}. Properties of this graph are
+constrained by how replies relate to each other. In other words, no
+edge is expected to have weight value other than 1. Also, no reply
 status can have outdegree greater than 1, however some nodes may have
 an outdegree of 0. Node with outdegree=0 can be root nodes, i.e. first
 post of conversation, or they were directed to unavailable
 statuses. On the other hand, indegree of nodes can be 0 or
 more. Special case nodes are those with indegree and outdegree equal
-to 0. Those are isolated/floating nodes and must be removed before
-analysis starts. First, those nodes do not benefit the analysis as
-they are not part of any conversation. Second, they will be seen as
-connected component by themselves, which affects accuracy of results.
+to 0. Those are isolated/floating nodes and must be removed before we
+perform the analysis -- these nodes do not benefit the analysis as
+they are not part of any conversation. Furthermore, they will be seen
+as connected component by themselves, which impacts upon the accuracy
+of results.
 
 \begin{figure}[htb]
 \centering
@@ -291,16 +298,17 @@ connected component by themselves, which affects accuracy of results.
 
 \subsubsection{Users' Graph}
 
-Because most analyses focus on relationships between reply posts, they
-were applied on the base graph. Nevertheless, to examine relationships
-amongst users, another graph is generated from the base graph. This
-process is carried out by iterating through edges linking reply posts,
-extracting users' information, and constructing users graph
-accordingly. In the context of this study, only two attributes are used, 
-screen names and `watched' values. While nodes represent screen names 
-`watched' valued are added as attribute of nodes. For edges, their weights 
-indicate number of replies sent from origin node (sender) to target
-node (receiver), therefore, the user graph is directed. Applying this
+Because most of the analysis focus on relationships between reply
+posts, they were applied on the base graph. Nevertheless, to allow
+examination of the relationships between users, another graph is
+generated from the base graph. This process is carried out by
+iterating through edges linking reply posts, extracting users'
+information, and constructing users graph accordingly. In the context
+of this study, only two attributes are used: screen names and
+`watched' values. While nodes represent screen names, `watched' valued
+are added as attribute of nodes. For edges, their weights indicate
+number of replies sent from origin node (sender) to target node
+(receiver), therefore, the user graph is directed. Applying this
 process on the example in Figure~\ref{fig:replychaingraph} results in
 the users graph shown in Figure~\ref{fig:usersgraph}.
 
@@ -348,13 +356,13 @@ the process iterates through nodes in each component and examine the
 are examined. Then, the component is either analysed on the fly, or
 returned if more intensive analysis is required.
 
-In the base graph, number of connected components reflect
-conversations, while in users graph, connected components show users
-communities. Therefore, in the base graph many components should be
-expected, depending on activity of the watched accounts. However, in
-the users graph, number of components should not exceed the number of
-watched accounts, although there might be exactly one component due to
-common customers.
+In the base graph, the number of connected components reflect
+conversations, while in the users' graph, connected components show
+the users' communities. Therefore, in the base graph many components
+should be expected, depending on activity of the watched
+accounts. However, in the users' graph, the number of components
+should not exceed the number of watched accounts, although there might
+be exactly one component due to common customers.
 
 
 \section{Results}\label{results}
@@ -727,7 +735,8 @@ The framework was tested on some selected accounts in the telecoms
 business domain in the UK.
 
 The Section~\ref{method} highlighted two important techniques that need to 
-be applied prior to starting the analysis phase. First, the recursive reply-chain 
+be applied prior to starting the analysis phase. First, the recursive
+reply chain 
 data collection is a crucial stage in obtaining more accurate results. The importance 
 of this stage stems from the fact that it fills the gaps and improve connectivity of
 graphs. Second, construction of the initial graph from replies and the

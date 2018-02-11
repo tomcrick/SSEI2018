@@ -410,21 +410,19 @@ replies were directed to non-reply posts.
 
 \subsection{Delay}
 
-Observation of active hours provides holistic view of
-activity. Additionally, calculating delays is important to provide
-more detailed view at single correspondences and how long did it take
-for CS to reply to posts and their averages, as shown in
-Figure~\ref{fig:delaymeans} and summarised in
-Table~\ref{tbl:delaystats}. As replies includes timestamp attribute,
-the process searches for CS nodes in the main graph, and measure
-temporal differences between both ending nodes on their out edges.
+Observation of active hours provides an overall view of
+account activity. However, calculating delays is important to provide
+more insights on performance of CS team. As reply nodes in the base graph (post-post)
+include timestamp attribute, measuring delay was acheived by calcuating temporal
+differences between end nodes on each edge. 
+Table~\ref{tbl:delaystats} shows descriptive statistics for CS account delays.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/delaymeans.png}
-\caption{Delay means for CS accounts}
-\label{fig:delaymeans}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\columnwidth]{images/delaymeans.png}
+% \caption{Delay means for CS accounts}
+% \label{fig:delaymeans}
+% \end{figure}
 
 \begin{table}[!h]
 \centering

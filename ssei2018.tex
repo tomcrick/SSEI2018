@@ -242,11 +242,15 @@ statuses that have not been collected previously. It was found that
 most missing statuses were either posted before the data collection
 started, mentions, or that the user account is protected. Naturally,
 this issue could have a huge impact on the quality of the analysis. 
-Therefore, once statuses are returned from the stream endpoint, they
-are processed to identify missing replied-to posts, and the REST API
-is used to collect them. This process runs recursively for newly
-collected replies until no further replies are available. Unavailable
-statuses are often results from either deletion or protected accounts.
+Therefore, once statuses are returned from the stream endpoint, 
+their type is checked first (tweet, retweet..etc). If it is a reply, 
+the ID of the status to which it was replying is extracted from 
+{\emph{in\_reply\_to\_status\_id}}. Then, using the extracted ID, we 
+check if the replied-to status has already been collected and present 
+in the dataset or not. If not, the REST API is then used to collect 
+them. This process runs recursively for newly collected replies until 
+no further replies are available. Unavailable statuses are often 
+results from either deletion or protected accounts.
 
 An analysis of changes on the graph after the second phase of data
 collection shows that there were increases in the number of nodes and

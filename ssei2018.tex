@@ -534,14 +534,14 @@ coexistence graph.
 
 \subsection{Delay}\label{results_delay}
 
-Calculating delays is important to provide insights on performance 
-of CS team. As reply nodes in the base graph 
-include timestamp attribute, measuring delay is achieved
-by calculating time differences between end nodes on each
-edge. Table~\ref{tbl:delaystats} shows descriptive statistics for CS
-account delays. Interestingly, {\emph{@skyhelpteam}} was found with an
-average delay of 45.04 hours, although rest of the CS accounts' delay
-ranged between 1.14 and 3.34 hours.
+Calculating delays is important to provide insight on the performance
+of the various CS teams. As reply nodes in the base graph include
+timestamp attribute, measuring delay is achieved by calculating time
+differences between end nodes on each edge. Table~\ref{tbl:delaystats}
+shows key statistics for CS account delays; interestingly,
+{\emph{@skyhelpteam}} was found to have an average delay of 45.04
+hours, although the rest of the CS accounts' delay ranged between 1.14
+and 3.34 hours.
 
 % \begin{figure}[htb]
 % \centering
@@ -579,12 +579,12 @@ ranged between 1.14 and 3.34 hours.
 %user details are embedded inside post nodes, observing such
 %relationships will not simple task to accomplish. Therefore, a
 
-To measure interaction amongst users, users graph graph was built 
-from the base graph. The resultant graph contains 3,521 user nodes 
+To measure interaction amongst users, user-user graphs were built 
+from the base graph.; the resultant graph contains 3,521 user nodes 
 and 5,938 edges. %as shown in Figure~\ref{fig:userusergraph}. 
 Although edges in the base graph cannot
-have weight higher than one, edge weight in the users graph includes all 
-replies in from one user to another. Therefore, which number of nodes and edges
+have a weight greater than one, edge weight in the users graph includes all 
+replies from one user to another. Therefore, the number of nodes and edges
 in the users graph is lower that those in the base graph.
 
 %\begin{figure}[htb]
@@ -594,15 +594,16 @@ in the users graph is lower that those in the base graph.
 %\label{fig:userusergraph}
 %\end{figure}
 
-Properties of the users graph are presented below in Table~\ref{tbl:uucentralitymeasures}. 
-The table says that {\emph{@virginmedia}} received that highest number of
-replies from 866 users with an average of 3.05 per user. Also, the
-same account scored highest in number of recipients. The difference
-between indegrees and outdegrees shows that apart from {\emph{@o2}},
-all accounts have outdegrees bigger that their
-indegrees. Additionally, the total number of sent replies is found to
-be more than the number of received replies; this may reflect that
-those replies were directed to non-reply posts.
+Properties of the users graph are presented below in
+Table~\ref{tbl:uucentralitymeasures}; the table show that
+{\emph{@virginmedia}} received that highest number of replies from 866
+users with an average of 3.05 per user. Also, the same account scored
+highest in the number of recipients. The difference between indegrees
+and outdegrees shows that apart from {\emph{@o2}}, all accounts have
+outdegrees bigger that their indegrees. Additionally, the total number
+of sent replies is found to be more than the number of received
+replies; this may reflect that those replies were directed to
+non-reply posts.
 
 \begin{table}[!h]
 \centering
@@ -626,29 +627,30 @@ those replies were directed to non-reply posts.
 
 \subsection{Conversation Components}
 
-As covered in the methodology, each connected component in the
-base graph represent a conversation component that includes related
+As discussed in the methodology, each connected component in the base
+graph represent a conversation component that includes related
 replies. In this dataset, there were 3,289 conversation components
 with various number of replies. Observations of their sizes shows that
-the smallest component consists of one post, while the biggest
-component contains 81 posts.  The number of one-post
-components was 102, and they were all found belonging to CS
-accounts. Examining those singular components revealed that they were
-either original tweets that have not received replies, or replies to unavailable
-statuses. As covered earlier, unavailable replies are
-those that could not be captured due to a deletion or their posting
-account being protected. Because they do not have any length, and
-hence do not represent conversation, single-node
-components will be excluded from forthcoming analyses.
+the smallest component consists of one post, while the largest
+component contains 81 posts. The number of one-post components was
+102, and they were all found to belong to CS accounts. Examining those
+singular components revealed that they were either original tweets
+that have not received replies, or replies to unavailable statuses. As
+covered earlier, unavailable replies are those that could not be
+captured due to a deletion or the posting account being
+protected. Because they do not have any length, and hence do not
+represent conversation, single-node components have been excluded from
+forthcoming analyses.
 
-Additionally, the most components were found to be with
-two nodes. Those components were 1,188 and the oreintation of their
-edges direction suggest that most of these communications were from CS accounts
-and directed to customer's post. However, 25 of those conversations
-were initiated by customers.  As they are two-node components, it seems
-that those posts have not been answered by CS. Although other
-means of communications could have been used, such as direct messages,
-there were no visible sign of further interaction.
+Additionally, the majority components were found to have two
+nodes. Those components were 1,188 and the orientation of their edge's
+direction suggest that most of these communications were from CS
+accounts and directed to customer's post. However, 25 of those
+conversations were initiated by customers.  As they are two-node
+components, it seems that those posts have not been answered by the
+relevant CS account. Although other means of communications could have
+been used, such as direct messages, there were no visible sign of
+further interaction.
 
 % \begin{figure}[htb]
 % \centering
@@ -663,7 +665,7 @@ It is important to note that the size of connected components does not
 necessarily reflect length of conversations, although there is a
 strong correlation between size of component and length of its longest
 path (0.88). As can be seen in Figure~\ref{fig:ccsizepaths}, many
-components measures are positioned in a near perfect diagonal line;
+components measures are positioned in a near-perfect diagonal line;
 interestingly, the longest path in the biggest component (81
 nodes/posts) was only 1.
 
@@ -675,16 +677,15 @@ nodes/posts) was only 1.
 \end{figure}
 
 To illustrate properties of connected components, the largest 20
-components were chosen for visualisation, as shown in 
-Figure~\ref{fig:20ccpostpostgraph}. The findings show that 
-components with very high variations in indegree amongst 
-their nodes are mostly originate from CS. Examples
-of this claim is illustrated by the three big components in the
-figure. When observed, they were found to featuring advertising
-tweets that have received too many replies from Twitter users. 
-For example, the root node in the biggest component was a post 
-by {\emph{@o2}} that has indegree of 80, and all connected nodes 
-have indegree of zero, i.e. they were not answered. On
+components were chosen for visualisation, as shown in
+Figure~\ref{fig:20ccpostpostgraph}. The findings show that components
+with very high variations in indegree amongst their nodes mostly
+originate from CS accounts. An example of this claim is illustrated by
+the three big components in the figure; when observed, they were found
+to featuring advertising tweets that had received too many replies
+from Twitter users.  For example, the root node in the biggest
+component was a post by {\emph{@o2}} that has indegree of 80, and all
+connected nodes have indegree of zero, i.e. they were not answered. On
 the other hand, the longest path component was ranked the third
 biggest component. It was found with a single leaf, and all other
 nodes along the path were found with indegree=1 and outdegree=1,
@@ -736,12 +737,12 @@ individual CS accounts.
 
 \subsection{Coexistence and Competition}
 
-As covered eariler, connected components in the base graph represent 
-individual conversations. Therefore, those components were utilised to uncover 
-indirect engagement amongst CS accounts. As reply nodes in the graph include 
-screen name of user, it is possible to identify those components with 
-more than one CS account. For each connected component, names in reply nodes
-are checked if they belong to CS account or public. Components with more than
+As presented eariler, connected components in the base graph represent 
+individual conversations. Therefore, those components were used to uncover 
+indirect engagement amongst CS accounts. As reply nodes in the graph
+include the account name of the user, it is possible to identify those components with 
+more than one CS account. For each connected component, the names in reply nodes
+are checked if they belong to a CS account or not. Components with more than
 one distinct CS name are then marked as coexistence component. The results show
 that there were 39 coexistence components in total; 38 include two CS accounts, and one
 includes three accounts. The graph presented in
@@ -757,35 +758,36 @@ given a colour code for identification as the legend clarifies.
 
 To explore these relationships further, a specific users graph was
 constructed based on those components. Construction of this graph
-follows similar steps as used in customer-CS graph. However, as CS
+follows similar steps as used in the customer-CS graph. However, as CS
 accounts do not have direct engagement with each other, edges in this
-graph are undirected and their weights indicate number of times they
-appeared together in the same conversation component.  The resulted
-CS-CS graph is shown in Figure~\ref{fig:coexistencegraph}, where node
-size is proportional to its degree to indicate how many other CS accounts the
-node has coexisted with, while darkness of node reflects weighted
-degree to show the total frequency of coexistence for the node.
+graph are undirected and their weights indicate the number of times
+they appeared together in the same conversation component.  The
+resulted CS-CS graph is shown in Figure~\ref{fig:coexistencegraph},
+where node size is proportional to its degree to indicate how many
+other CS accounts the node has coexisted with, while darkness of node
+reflects weighted degree to show the total frequency of coexistence
+for the node.
 
 The first observation on the graph is that {\emph{@giffgaff}} account
 was not found in any common conversation. In contrast, {\emph{@o2}}
-was the only account that have shared conversations with all other CS
-accounts, while {\emph{@vodafoneukhelp}} was found with the least
-common conversations. Nevertheless, weighted degree measure shows that
-{\emph{@virginmedia}} was the highest in number of common
-conversations, 21 components, although its degree tells that those
+was the only account that have shared conversations with all other
+selected CS accounts, while {\emph{@vodafoneukhelp}} was found with
+the least common conversations. Nevertheless, weighted degree measure
+shows that {\emph{@virginmedia}} was the highest in number of common
+conversations -- 21 components -- although its degree tells that those
 conversations were shared with only three other CS teams. The heaviest
 edge existed between {\emph{@virginmedia}} and {\emph{@btcare}},
 followed by the edge between {\emph{@virginmedia}} and
-{\emph{@skyhelpteam}}. Also, edges of {\emph{@o2}} show that it was
-mostly appeared with {\emph{@ee}}, and for {\emph{@vodafoneukhelp}} it
-was {\emph{@ee}}.
+{\emph{@skyhelpteam}}. Also, edges of {\emph{@o2}} show that it mostly
+appeared with {\emph{@ee}}, and for {\emph{@vodafoneukhelp}} it was
+{\emph{@ee}}.
 
 The observation of edges and their weights can provide insight into
 uncovering more specific service areas within the specific industry or
-sector. This was found clear when the modularity of the graph was
-examined~\cite{Blondel2008}. The result has unfolded into two
+sector. This was clear when the modularity of the graph was
+examined~\cite{Blondel2008}; the result has unfolded into two
 communities, as shown in Figure~\ref{fig:modularityclassgraph}. Also,
-industry knowledge regarding these following CS teams: {\emph{@ee}},
+industry knowledge regarding the following CS teams: {\emph{@ee}},
 {\emph{@o2}}, and {\emph{@vodafoneukhelp}} belong to a domain that is
 mostly focused on mobile services, while {\emph{@skyhelpteam}},
 {\emph{@virginmedia}}, and {\emph{@btcare}} are mostly known to be
@@ -807,12 +809,13 @@ focusing on landline and home internet services.
 
 Furthermore, using a similar approach that was used in
 Section~\ref{results_delay}, the delay was measured in those
-components to evaluate if presence of competitor has influence on how
-quick CS team response. Interestingly, an improvement in dealy of 26\%, 43\%
-and 72\% were observed for {\emph{virginmedia}},{\emph{btcare}} and
-{\emph{skyhelpteam}}, respectively. These changes in delay, in addition to
-the frequency of the companies common conversations presented earlier, 
-confirm the existence of online competition amongst them.
+components to evaluate if presence of competitor has an influence on
+the latency of the CS team response. Interestingly, an improvement in
+delay of 26\%, 43\% and 72\% were observed for
+{\emph{virginmedia}},{\emph{btcare}} and {\emph{skyhelpteam}},
+respectively. These changes in delay, in addition to the frequency of
+the companies common conversations presented earlier, confirm the
+existence of online competition amongst them.
 
 % \begin{figure}[htb]
 % \centering

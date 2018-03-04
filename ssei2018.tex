@@ -176,7 +176,7 @@ service Twitter accounts and their interactions. Rather than focusing
 on individual posts and their sentiment, the framework helps in identifying
 complaint conversations that can be exploited by other business rivals, 
 to be interrogated further by analysts or decision makers. With the high 
-volume of activity on Twitter, the framework focues on detecting possible 
+volume of activity on Twitter, the framework focuses on detecting possible 
 key issues by using the connected component feature of graph to 
 identify problematic conversations for further
 analysis. Furthermore, by using streaming and RESTful data, this
@@ -184,14 +184,63 @@ approach can be applied to live data to catch problematic
 conversations before they reach certain thresholds.
 
 The remainder of this paper is organised as follows: in
-Section~\ref{method}, we introduce the methodology;
+Sections~\ref{casestudy} and~\ref{method} we introduce the case study
+of the UK telecoms industry as well as the methodology;
 Section~\ref{results} presents the results and key visual
 representations; Section~\ref{discussion} provides the main
 discussion; Section~\ref{conclusions} concludes the paper with a
 discussion of potential extensions and wider application of this work.
 
+\section{Case Study: UK Telecoms Industry}\label{casestudy}
+
+Most UK households have access to both fixed broadband and a
+smartphone, with consumers moving seamlessly between fixed and mobile
+connections. This has been driven by the growing take-up of superfast
+broadband services, with the proportion of UK households with fixed
+broadband increasing to 82\% in 2017, with telecoms services rising to
+3.8\% of total household spend. With the increasing convergence of
+mobile and Wi-Fi connectivity, many customers in the UK have switched
+from pay-as-you-go tariffs to pay-monthly tariffs in 2016, and nearly
+two-thirds of mobile connections were 4G-enabled at the end of
+2016. Consumers are also using these networks more -- average data use
+per fixed line residential broadband connection increased by 36\% year
+on year to 132GB in June 2016, and average data use per mobile
+connection increased by 44\% to 1.3GB~\cite{ofcom:2017}. The UK
+telecoms sector has continued to grow rapidly over the past five
+years, with total sector revenues in 2016 of \pounds35.6bn, including
+mobile retail revenues of \pounds15.3bn~\cite{ofcom:2017}.
+
+There are four main fixed broadband network operators in the UK: BT,
+Sky, TalkTalk and Virgin Media; alongside the incumbent BT,
+alternative providers compete in the retail provision of fixed
+services (including telephony and broadband), as well as other
+operators using a variety of wholesale inputs purchased from BT and
+resellers. There are currently four main mobile network operators
+(MNOs) in the UK (with 2017 subscriber numbers): BT/EE (29.8m),
+O2/Telef\`{o}nica (25m), Vodafone (17.6m), and Three/H3G (12.01m);
+there are also several mobile virtual network operators (MVNOs),
+including Virgin Mobile (via EE, 3m), giffgaff (via O2, 420,000) and
+Sky Mobile (via O2, 335,000)~\cite{ecdpr:2017}.
+
 
 \section{Methodology}\label{method}
+
+The dataset contains tweets and related replies for seven well-known
+UK telecoms companies: BT, EE\footnote{BT's acquisition of EE was
+completed in 2016; the merger did not materially increase EE's market
+share, but as a result of the merger EE's useable spectrum share
+increased. There have been no other significant new entrants or
+changes in market share since.}, giffgaff, O2, Sky, Virgin Media and
+Vodaphone. The choices were intended to represent companies of various
+sizes, history and range of services provided. While a few companies
+were found with one account on Twitter, some of them have multiple
+accounts alongside the primary Twitter account. In those instances,
+the dedicated customer services accounts were indicated in the
+biography of the company's other accounts. Therefore, as the focus of
+the study is on customer services on Twitter, data were collected from
+either company's primary account or its dedicated customer services
+one (N.B. names throughout the paper refer to Twitter account handles
+rather than official company brand names).
 
 Inspired by the approach taken by Cogan et al.~\cite{Cogan2012}, this
 study consists of two main steps: the data collection phases and the
@@ -209,21 +258,6 @@ for visualisation.
 % \caption{Overall framework structure}
 % \label{fig:frameworkstructure}
 % \end{figure}
-
-\subsection{Case Study: UK Telecoms Industry}
-
-The dataset contains tweets and related replies for seven well-known
-UK telecoms companies: BT, EE, giffgaff, O2, Sky, Virgin Media and
-Vodaphone.  The choices were intended to represent companies of
-various sizes, history and range of services provided. While a few
-companies were found with one account on Twitter, some of them have
-multiple accounts alongside the primary Twitter account. In those
-instances, the dedicated customer services accounts were indicated in
-the biography of the company's other accounts. Therefore, as the focus
-of the study is on customer services on Twitter, data were collected
-from either company's primary account or its dedicated customer
-services one (N.B. names throughout the paper refer to Twitter account
-handles rather than official company brand names).
 
 \subsection{Streaming}
 
@@ -760,7 +794,17 @@ better deals or speedy resolution of their
 problems~\cite{einwiller+steilen:2015}. In turn, this nature of
 publicly posted complaints add more pressure on CS teams to improve
 their social media engagement, especially when business rivals are
-included by customers~\cite{gregoire-et-al:2015}.
+included by customers~\cite{gregoire-et-al:2015}. 
+
+Some of these issues are particularly pertinent for the mobile virtual
+network operators (MVNOs) -- such as Virgin, giffgaff and Sky -- who
+use the infrastructure of the four main mobile network operators
+(MNOs), as presented in Section~\ref{casestudy}. While this may not
+directly affect CS operations, especially as many customers are
+unlikely to be aware of whether their company owns any underlying
+network infrastructure, it may have operational and/or performance
+impacts on the virtual operators depending on their service-level
+agreements with the infrastructure operators.
 
 \section{Conclusions}\label{conclusions}
 
@@ -768,7 +812,7 @@ The paper has introduced an extensible framework for evaluating
 customer service performance and competition between industry rivals
 on Twitter. We have presented methods on how network graphs properties
 can be used to make sophisticated evaluations, with the framework
-being tested on selected accounts in the UK telecoms sector.
+being tested on selected operators in the UK telecoms sector.
 
 Section~\ref{method} highlighted two important techniques that need to
 be applied prior to starting the analysis phase. First, the recursive

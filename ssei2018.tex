@@ -280,19 +280,19 @@ increased. There have been no other significant new entrants or
 changes in market share since.}, giffgaff, O2, Sky, Virgin Media and
 Vodaphone. The choices were intended to represent companies of various
 sizes, history and range of services provided. While a few companies
-were found with one account on Twitter, some of them have multiple
-accounts alongside the primary Twitter account. In those instances,
+only had one account on Twitter, some of them have multiple
+accounts alongside the primary Twitter account; in those instances,
 the dedicated customer services accounts were indicated in the
 biography of the company's other accounts. Therefore, as the focus of
 the study is on customer services on Twitter, data were collected from
-either company's primary account or its dedicated customer services
-one (N.B. names throughout the paper refer to Twitter account handles
-rather than official company brand names).
+either the company's primary account or its dedicated customer services
+one (N.B. names throughout the paper will refer to Twitter account handles
+rather than official company trading names).
 
 Inspired by the approach taken by Cogan et al.~\cite{Cogan2012}, this
 study consists of two main steps: the data collection phases and the
-graph construction. The data collection runs iteratively to obtain
-reply chains, process them and save them to a database. Once the data
+graph construction. The data collection phase runs iteratively to obtain
+reply chains, process them and store them in a database. Once the data
 collection phase is completed, a large graph that includes all reply
 nodes and edges is constructed to conduct the initial analysis. The
 NetworkX Python package~\cite{Hagberg2008} was used for the graph
@@ -311,7 +311,7 @@ for visualisation.
 To ensure we were able to collect as much data as possible, the data
 collection comprised of three steps. First, a stream endpoint is
 opened to catch activities of accounts under investigation, those
-accounts will be referred to as 'CS' (customer service)
+accounts will be referred to as `CS' (customer service)
 accounts. The Twitter Streaming
 API\footnote{\url{https://developer.twitter.com/en/docs}} is designed
 to return tweets created by the user, their retweets, replies directed
@@ -321,18 +321,18 @@ protected users.
 
 \subsection{Reply Chains}
 
-Returned statuses from the Streaming API may represent reply to
+Returned statuses from the Streaming API may represent reply-to
 statuses that have not been collected previously. It was found that
 most missing statuses were either posted before the data collection
-started, mentions, or that the user account is protected. Naturally,
-this issue could have a huge impact on the quality of the analysis. 
-Therefore, once statuses are returned from the stream endpoint, 
-their type is checked first (tweet, retweet..etc). If status is a reply, 
+started, were mentions, or that the user account is protected. This
+issue could have a potenially significant impact on the quality of the
+analysis; therefore, once statuses are returned from the stream endpoint, 
+their type is checked first (tweet, retweet, etc). If status is a reply, 
 the ID of the status to which it was replying is extracted from 
 {\emph{in\_reply\_to\_status\_id}}. Then, using the extracted ID, we 
 check if the replied-to status has already been collected and present 
 in the dataset or not. If not, the REST API is then used to collect 
-them. This process runs recursively for newly collected replies until 
+them. This process runs recursively for newly-collected replies until 
 no further replies are available. Unavailable statuses are often 
 results from either deletion or protected accounts.
 
@@ -340,7 +340,7 @@ An analysis of changes on the graph after the second phase of data
 collection shows that there were increases in the number of nodes and
 edges by 43\% and 62\%, respectively. This increase in connections has
 resulted in merging 176 conversations into others, which improved
-connectivity of the graph and, thus, accuracy of the dependent
+connectivity of the graph and, thus, the accuracy of the dependent
 analyses.
 
 % \begin{figure}[htb]
@@ -353,38 +353,41 @@ analyses.
 
 
 \subsection{Graph Construction}
-The main data structure of conversations on Twitter suggests status-to-status
-{\footnote{'status' refer to any type of post, tweet, retweet, reply, or quote}} 
-relatioship. In graph concept, statuses represent nodes that are linked by 
-directed edges. Therefore, the study follows a graph construction approach 
-in conducting analysis and produces three graphs. First, {\emph{base}} 
-graph is constructed to capture structure of the dataset, i.e. stuatus-to-status. 
-Then, from the base graph, it generates two graphs; {\emph{Users} 
-graph to examine the user-to-user direct engagements, and {\emph{Coexistence}} 
-graph to uncover and examine indirect engagements amongst rivals. 
+
+The main data structure of conversations on Twitter suggests
+status-to-status {\footnote{We use `status' to refer to any type of post, tweet,
+retweet, reply, or quote.}} relatioship. In graph concept, statuses
+represent nodes that are linked by directed edges. Therefore, the
+study follows a graph construction approach in conducting analysis and
+produces three graphs. First, {\emph{base}} graph is constructed to
+capture structure of the dataset, i.e. status-to-status.  Then, from
+the base graph, it generates two graphs: the {\emph{Users} graph to
+examine the user-to-user direct engagements, and the {\emph{Coexistence}}
+graph to uncover and examine indirect engagements amongst rivals.
 
 \subsubsection{Base Graph}
 
-Once data are collected, a base graph is generated 
-containing all replies and the related information. Nodes represent status IDs, 
-while edges indicate replying direction. Other information  
-are added as attributes to nodes. The information used in this study 
-are {\emph{screen\_name}} of the user, {\emph{timestamp}} of the 
-reply, {\emph{text}}, and {\emph{CS}}. The additional {\emph{CS}} 
-value is a binary digit set to distinguish accounts, it is set to 1 if the status belongs to 
-one of the CS accounts, otherwise it is 0. This value is essential to eleminate the need 
-for user checks in forecoming analyses. Figure~\ref{fig:replychaingraph} 
-illustrate conceptual base graph. As reply can be directed to only one 
-other status, no edge is expected to have weight value other than 1, and no reply
-status can have outdegree greater than 1. Node with 0 outdegree can be either
-root node, or it is directed to unavailable statuses. On the other hand, indegree in 
-this graph indicate number of replies directed to status node, hence, 0 indegree 
-distinguishes leaf nodes. Special case nodes are those with indegree and outdegree equal
-to 0. Those are isolated/floating nodes and must be removed before we
-perform the analysis -- these nodes do not benefit the analysis as
-they are not part of conversation. Furthermore, they will be seen
-as connected component by themselves, which impacts upon the accuracy
-of results.
+Once the data are collected, a base graph is generated containing all
+replies and all related information. Nodes represent status IDs, while
+edges indicate replying direction; other information is added as
+attributes to nodes. The information used in this study are
+{\emph{screen\_name}} of the user, {\emph{timestamp}} of the reply,
+{\emph{text}}, and {\emph{CS}}. The additional {\emph{CS}} value is a
+binary digit set to distinguish accounts -- it is set to 1 if the status
+belongs to one of the CS accounts, otherwise it is 0. This value is
+required to eleminate the need for user checks in forecoming
+analyses. Figure~\ref{fig:replychaingraph} illustrates the conceptual base
+graph. As a reply can be directed to only one other status, no edge is
+expected to have weight value other than 1, and no reply status can
+have outdegree greater than 1. Nodes with 0 outdegree can be either a
+root node, or it is directed to unavailable statuses. On the other
+hand, indegree in this graph indicates the number of replies directed to
+the status node; hence, 0 indegree distinguishes leaf nodes. Special case
+nodes are those with indegree and outdegree equal to 0; these are
+isolated/floating nodes and must be removed before we perform the
+analysis -- these nodes do not benefit the analysis as they are not
+part of a conversation. Furthermore, they will be seen as connected
+component by themselves, which impacts upon the accuracy of results.
 
 \begin{figure}[htb]
 \centering
@@ -402,12 +405,12 @@ generated from the base graph. This process is carried out by
 iterating through edges linking reply posts, extracting users'
 information, and constructing users graph accordingly. In the context
 of this study, only two attributes are used: screen names and
-'CS' values. While nodes represent screen names, 'CS' valued
+`CS' values. While nodes represent screen names, `CS' values
 are attached to nodes as attribute. For edges, their weights indicate
 number of replies sent from origin node (sender) to target node
-(receiver), therefore, the user graph is directed. Applying this
+(receiver); therefore, the user graph is directed. Applying this
 process on the example in Figure~\ref{fig:replychaingraph} results in
-the users graph shown in Figure~\ref{fig:usersgraph}.
+the users graph in Figure~\ref{fig:usersgraph}.
 
 \begin{figure}[htb]
 \centering
@@ -418,12 +421,12 @@ the users graph shown in Figure~\ref{fig:usersgraph}.
 
 To examine relationships between users, five network graph properties
 are measured. There were no special case nodes or edges in this graph,
-as observed in the base graph. For edges, their orientation indicate direction of 
-replies, while weight reflects number of replies on the edge. 
-Node indgeree reflect number of users that have sent reply to the node, 
-and outdegree indicates the number of users that have received reply 
-from the node. Also, weighted measure of indegree and outdegree indicate 
-total received and sent replies, respectively.
+as observed in the base graph. For edges, their orientation indicate
+direction of replies, while weight reflects number of replies on the
+edge.  Node indgeree reflect number of users that have sent reply to
+the node, and outdegree indicates the number of users that have
+received reply from the node. Also, weighted measure of indegree and
+outdegree indicate total received and sent replies, respectively.
 
 %Graph properties that are used in
 %analysing this graph and their contextual interpretations are shown in
@@ -449,38 +452,39 @@ total received and sent replies, respectively.
 
 \subsubsection{Connected Components}
 
-Reply conversations in the base graph are not inter connected, 
-which implies that the graph is actually consists of many 
-subgraphs, or 'connected components'{\footnote{the term 
-'component' will be used for short}}. Since nodes include 
-screen names, those components can be linked to CS accounts. Then,  
-they are used to measure size of conversation, their
-depths, and to identify shared conversations between CS
-accounts. In the base graph, the number of connected components 
-reflect number of conversations. Therefore, in the base graph 
-many components should be expected, depending on activity of the CS
-accounts and their audience.
+Reply conversations in the base graph are not interconnected, which
+implies that the graph actually consists of many subgraphs, or
+`connected components'. Since nodes include screen names, those
+components can be linked to CS accounts. Then, they are used to
+measure the size of conversation, their depths, and to identify shared
+conversations between the CS accounts. In the base graph, the number
+of connected components reflect number of conversations. Therefore, in
+the base graph many components should be expected, depending on
+activity of the CS accounts and their audience.
 
-To find conversations for a specific CS account, the search run through all
-components. In each component, the process iterates through nodes and 
-examine the {\emph{name}} attribute. Once a match is found, the search 
-process stops and the identified component is either analysed on the fly, or
-returned for further analysis. Additionally, some of those components will 
-be used to construct the coexistence graph, as covered next.
+To find conversations for a specific CS account, the search run
+through all components; in each component, the process iterates
+through nodes and examine the {\emph{name}} attribute. Once a match is
+found, the search process stops and the identified component is either
+analysed on the fly, or returned for further analysis. Additionally,
+some of those components will be used to construct the coexistence
+graph, as covered next.
 
 \subsubsection{Coexistence Graph}
 
-As mentioned earlier, this graph aims to measure the indirect 
-engagements amongst the CS accounts. Therefore, all components in the base
-graph are processed in turn to find what CS accounts appeared. For each component,
-name attributes for nodes with CS value equal to 1 are extracted. 
-If more than one CS account were found, those accounts are used to created nodes
-and edges for the coexistence graph. So, nodes are generated from CS names,
-and edges indicate common conversation between linked nodes. Subsequently, 
-if edge is already exist, its weight is inceareses. 
-For illustration, Figure~\ref{fig:ccmethod} and Figrue~\ref{fig:coexistencegraph2} 
-were generated to examplify three common components and 
-resulted coexistecne graph, respectively.
+As mentioned previously, this graph aims to measure the indirect
+engagements amongst the CS accounts. Therefore, all components in the
+base graph are processed in turn to find which CS accounts
+appeared. For each component, name attributes for nodes with CS value
+equal to 1 are extracted.  If more than one CS account was found,
+those accounts are used to created nodes and edges for the coexistence
+graph. Thus, nodes are generated from CS names, and edges indicate
+common conversation between linked nodes. Subsequently, if the edge 
+already exists, its weight is increased.  For an illustration of this
+process, see Figure~\ref{fig:ccmethod} and
+Figure~\ref{fig:coexistencegraph2} 
+to exemplify three common components and the resultant
+coexistence graph.
 
 \begin{figure}[htb]
 \centering

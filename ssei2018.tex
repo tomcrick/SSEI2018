@@ -367,12 +367,12 @@ examine the {\emph{name}} attribute. Once a match is found, the search
 process stops and the identified component is either analysed on the fly, or
 returned for further analysis. Also, to find what CS accounts appear in 
 a component, CS values in all nodes in the component need to be examined. 
-Then, names of those nodes with CS value of 1 are extracted and checked.
+Then, names of those nodes with CS value of 1 are extracted.
 
 In the base graph, the number of connected components reflect number of
 conversations. Therefore, in the base graph many components
 should be expected, depending on activity of the CS
-accounts.
+accounts and their audience.
 
 
 \section{Results}\label{results}
@@ -501,7 +501,7 @@ ranged between 1.14 and 3.34 hours.
 \subsection{Conversation Components}
 
 As covered in the methodology, each connected component in the
-post-post graph represent a conversation entity that includes related
+base graph represent a conversation component that includes related
 replies. In this dataset, there were 3,289 conversation components
 with various number of replies. Observations of their sizes shows that
 the smallest component consists of one post, while the biggest
@@ -509,15 +509,15 @@ component contains 81 posts.  Furthermore, the number of one-post
 components was 102, and they were all found belonging to CS
 accounts. Examining those singular components revealed that they were
 either original tweets that have no replies or replies with no
-replied-to post available. As covered earlier, missing replies are
+replied-to post available. As covered earlier, unavailable replies are
 those that could not be captured due to a deletion or their posting
-account being protected.  Because they do not have any length, and
-hence do not represent an examinable conversation, single-node
+account being protected. Because they do not have any length, and
+hence do not represent conversation, single-node
 components will be excluded from forthcoming analyses.
 
 Additionally, most common size of connected components was found to be
-two nodes.  They were 1,188 components and the direction of their
-edges revealed that most of these communications were from CS accounts
+two nodes.  They were 1,188 components and the oreintation of their
+edges direction suggest that most of these communications were from CS accounts
 and directed to customer's post. However, 25 of those conversations
 were initiated by customers.  As they are in two-node components, this
 shows that those posts have not been answered by CS. Although other
@@ -609,7 +609,7 @@ individual CS accounts.
 \subsection{Coexistence and Competition}
 
 As covered eariler, connected components in the base graph represent 
-conversations. Therefore, those components were utilised to uncover 
+individual conversations. Therefore, those components were utilised to uncover 
 indirect engagement amongst CS accounts. As reply nodes in the graph include 
 screen name of user, it is possible to identify those components with 
 more than one CS account. For each connected component, names in reply nodes
@@ -634,7 +634,7 @@ accounts do not have direct engagement with each other, edges in this
 graph are undirected and their weights indicate number of times they
 appeared together in the same conversation component.  The resulted
 CS-CS graph is shown in Figure~\ref{fig:coexistencegraph}, where node
-size indicates degree of node to show how many other CS accounts the
+size is proportional to its degree to indicate how many other CS accounts the
 node has coexisted with, while darkness of node reflects weighted
 degree to show the total frequency of coexistence for the node.
 
@@ -680,10 +680,11 @@ focusing on landline and home internet services.
 Furthermore, using a similar approach that was used in
 Section~\ref{results_delay}, the delay was measured in those
 components to evaluate if presence of competitor has influence on how
-quick CS team response. Interestingly, an improvement of 26\%, 43\%
+quick CS team response. Interestingly, an improvement in dealy of 26\%, 43\%
 and 72\% were observed for {\emph{virginmedia}},{\emph{btcare}} and
-{\emph{skyhelpteam}}, respectively. Rather surprisingly, for the other
-three companies, the average delay showed a drop by at least 9\%.
+{\emph{skyhelpteam}}, respectively. These changes in delay, in addition to
+the frequency of the companies common conversations presented earlier, 
+confirm the existence of online competition amongst them.
 
 % \begin{figure}[htb]
 % \centering

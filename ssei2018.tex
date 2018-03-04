@@ -409,28 +409,31 @@ subgraphs, or 'connected components'{\footnote{the term
 screen names, those components can be linked to CS accounts. Then,  
 they are used to measure size of conversation, their
 depths, and to identify shared conversations between CS
-accounts. 
+accounts. In the base graph, the number of connected components 
+reflect number of conversations. Therefore, in the base graph 
+many components should be expected, depending on activity of the CS
+accounts and their audience.
 
 To find conversations for a specific CS account, the search run through all
 components. In each component, the process iterates through nodes and 
 examine the {\emph{name}} attribute. Once a match is found, the search 
 process stops and the identified component is either analysed on the fly, or
-returned for further analysis. Also, to find what CS accounts appear in 
-a component, CS values in all nodes in the component need to be examined. 
-Then, names of those nodes with CS value of 1 are extracted.
-
-In the base graph, the number of connected components reflect number of
-conversations. Therefore, in the base graph many components
-should be expected, depending on activity of the CS
-accounts and their audience.
+returned for further analysis. Additionally, some of those components will 
+be used to construct the coexistence graph, as covered next.
 
 \subsubsection{Coexistence Graph}
-As mentioned earlier, this graph is constructed to measure the indirect 
-engagement amongst the CS accounts. This graph is constructed 
-using the connected component that have more than one CS accounts in 
-base graph (common components). Figure~\ref{fig:ccmethod} and Figrue~\ref{fig:coexistencegraph2} 
-show example of three connected components and resulted coexistecne graph, 
-respectively.
+
+As mentioned earlier, this graph aims to measure the indirect 
+engagements amongst the CS accounts. Therefore, all components in the base
+graph are processed in turn to find what CS accounts appeared. For each component,
+name attributes for nodes with CS value equal to 1 are extracted. 
+If more than one CS account were found, those accounts are used to created nodes
+and edges for the coexistence graph. So, nodes are generated from CS names,
+and edges indicate common conversation between linked nodes. Subsequently, 
+if edge is already exist, its weight is inceareses. 
+For illustration, Figure~\ref{fig:ccmethod} and Figrue~\ref{fig:coexistencegraph2} 
+were generated show example of three common components and 
+resulted coexistecne graph, respectively.
 
 \begin{figure}[htb]
 \centering

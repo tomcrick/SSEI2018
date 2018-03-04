@@ -352,7 +352,7 @@ analyses.
 % \end{figure}
 
 
-\subsection{Graph Construction}
+\subsection{Graph Construction}\label{graphconstruction}
 The main data structure of conversations on Twitter suggests status-to-status
 {\footnote{'status' refer to any type of post, tweet, retweet, reply, or quote}} 
 relatioship. In graph concept, statuses represent nodes that are linked by 
@@ -730,16 +730,16 @@ individual CS accounts.
 \label{tbl:delaystatscl}
 \end{table}
 
-\subsection{Coexistence and Competition}
+\subsection{Common Components and Coexistence}
 
 As covered eariler, connected components in the base graph represent 
 individual conversations. Therefore, those components were utilised to uncover 
-indirect engagement amongst CS accounts. As reply nodes in the graph include 
-screen name of user, it is possible to identify those components with 
+indirect engagement amongst CS accounts. As reply nodes in the base graph include 
+screen name of user, it is possible to identify those components featuring 
 more than one CS account. For each connected component, names in reply nodes
 are checked if they belong to CS account or public. Components with more than
-one distinct CS name are then marked as coexistence component. The results show
-that there were 39 coexistence components in total; 38 include two CS accounts, and one
+one distinct CS name are then marked as common component. The results show
+that there were 39 common components in total; 38 include two CS accounts, and one
 includes three accounts. The graph presented in
 Figure~\ref{fig:commoncc} shows those components, with each CS account
 given a colour code for identification as the legend clarifies.
@@ -751,13 +751,11 @@ given a colour code for identification as the legend clarifies.
 \label{fig:commoncc}
 \end{figure*}
 
-To explore these relationships further, a specific users graph was
-constructed based on those components. Construction of this graph
-follows similar steps as used in customer-CS graph. However, as CS
-accounts do not have direct engagement with each other, edges in this
-graph are undirected and their weights indicate number of times they
-appeared together in the same conversation component.  The resulted
-CS-CS graph is shown in Figure~\ref{fig:coexistencegraph}, where node
+To explore these relationships further, coexistence graph was
+constructed, as clarified in Section~\ref{graphconstruction}. 
+Edges in this graph are undirected and their weights indicate frequency
+of CS accounts appearing in same conversation. The resulted
+graph is shown in Figure~\ref{fig:coexistencegraph}, where node
 size is proportional to its degree to indicate how many other CS accounts the
 node has coexisted with, while darkness of node reflects weighted
 degree to show the total frequency of coexistence for the node.
@@ -768,7 +766,7 @@ was the only account that have shared conversations with all other CS
 accounts, while {\emph{@vodafoneukhelp}} was found with the least
 common conversations. Nevertheless, weighted degree measure shows that
 {\emph{@virginmedia}} was the highest in number of common
-conversations, 21 components, although its degree tells that those
+conversations; 21 components, although its degree tells that those
 conversations were shared with only three other CS teams. The heaviest
 edge existed between {\emph{@virginmedia}} and {\emph{@btcare}},
 followed by the edge between {\emph{@virginmedia}} and
@@ -776,7 +774,7 @@ followed by the edge between {\emph{@virginmedia}} and
 mostly appeared with {\emph{@ee}}, and for {\emph{@vodafoneukhelp}} it
 was {\emph{@ee}}.
 
-The observation of edges and their weights can provide insight into
+Additional observation on the coexistence graph provides insight into
 uncovering more specific service areas within the specific industry or
 sector. This was found clear when the modularity of the graph was
 examined~\cite{Blondel2008}. The result has unfolded into two
@@ -790,24 +788,25 @@ focusing on landline and home internet services.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\columnwidth]{images/coexistencegraph.png}
-\caption{CS-CS coexistence graph}
+\caption{CS Coexistence Graph}
 \label{fig:coexistencegraph}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\columnwidth]{images/modularityclassgraph.png}
-\caption{Modularity class graph}
+\caption{Modularity classes in coexistence graph}
 \label{fig:modularityclassgraph}
 \end{figure}
 
 Furthermore, using a similar approach that was used in
 Section~\ref{results_delay}, the delay was measured in those
 components to evaluate if presence of competitor has influence on how
-quick CS team response. Interestingly, an improvement in dealy of 26\%, 43\%
+quick CS team response. Interestingly, improvement in delays of 26\%, 43\%
 and 72\% were observed for {\emph{virginmedia}},{\emph{btcare}} and
-{\emph{skyhelpteam}}, respectively. These changes in delay, in addition to
-the frequency of the companies common conversations presented earlier, 
+{\emph{skyhelpteam}}, respectively. 
+These improvements in delays, in addition to
+the frequency of common conversations for those companies, 
 confirm the existence of online competition amongst them.
 
 % \begin{figure}[htb]

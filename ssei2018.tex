@@ -458,7 +458,7 @@ implies that the graph actually consists of many subgraphs, or
 components can be linked to CS accounts. Then, they are used to
 measure the size of conversation, their depths, and to identify shared
 conversations between the CS accounts. In the base graph, the number
-of connected components reflect number of conversations. Therefore, in
+of connected components reflect the number of conversations. Therefore, in
 the base graph many components should be expected, depending on
 activity of the CS accounts and their audience.
 
@@ -674,22 +674,24 @@ nodes/posts) was only 1.
 \label{fig:ccsizepaths}
 \end{figure}
 
-To further explore properties of connected components, the largest 20
-components, as shown in Figure~\ref{fig:20ccpostpostgraph}, were
-examined.  The findings show that components with very high variations
-in indegree amongst their nodes are mostly originate from CS. Examples
+To illustrate properties of connected components, the largest 20
+components were chosen for visualisation, as shown in 
+Figure~\ref{fig:20ccpostpostgraph}. The findings show that 
+components with very high variations in indegree amongst 
+their nodes are mostly originate from CS. Examples
 of this claim is illustrated by the three big components in the
 figure. When observed, they were found to featuring advertising
-tweets. Another observation on the biggest component is that origin
-node was a post by {\emph{@o2}} and has an indegree of 80, while rest
-of the nodes have indegree of zero, i.e. they were not answered. On
+tweets that have received too many replies from Twitter users. 
+For example, the root node in the biggest component was a post 
+by {\emph{@o2}} that has indegree of 80, and all connected nodes 
+have indegree of zero, i.e. they were not answered. On
 the other hand, the longest path component was ranked the third
 biggest component. It was found with a single leaf, and all other
 nodes along the path were found with indegree=1 and outdegree=1,
 forming what we call a {\emph{simple chain}}, uniquely coloured in
 Figure~\ref{fig:20ccpostpostgraph}. Additionally, 15 of those
 components were found to have originated from customer accounts, and
-they all take a semi-simple chain.
+they all take a semi-simple chain as they feature some branches.
 
 \begin{figure}[htb]
 \centering

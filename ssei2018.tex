@@ -296,10 +296,9 @@ for user checks in forecoming analyses. Figure~\ref{fig:replychaingraph}
 illustrate conceptual base graph. As reply can be directed to only one 
 other status, no edge is expected to have weight value other than 1, and no reply
 status can have outdegree greater than 1. Node with 0 outdegree can be either
-root node, or it is directed to unavailable statuses. On the other hand, indegree of 
-nodes can be 0 or more. Indegree in this graph indicate number of replies
-directed to this status node. Hence, 0 indegree distinguishes leaf nodes.
-Special case nodes are those with indegree and outdegree equal
+root node, or it is directed to unavailable statuses. On the other hand, indegree in 
+this graph indicate number of replies directed to status node, hence, 0 indegree 
+distinguishes leaf nodes. Special case nodes are those with indegree and outdegree equal
 to 0. Those are isolated/floating nodes and must be removed before we
 perform the analysis -- these nodes do not benefit the analysis as
 they are not part of conversation. Furthermore, they will be seen
@@ -338,29 +337,36 @@ the users graph shown in Figure~\ref{fig:usersgraph}.
 
 To examine relationships between users, five network graph properties
 are measured. There were no special case nodes or edges in this graph,
-as observed in the base graph. Graph properties that are used in
-analysing this graph and their contextual interpretations are shown in
-Table~\ref{tbl:uucentralitymeasuresinter}.
+as observed in the base graph. For edges, their orientation indicate direction of 
+replies, while weight reflects number of replies on the edge. 
+Node indgeree reflect number of users that have sent reply to the node, 
+and outdegree indicates the number of users that have received reply 
+from the node. Also, weighted measure of indegree and outdegree indicate 
+total received and sent replies, respectively.
 
-\begin{table}[!h]
-\centering
-\begin{tabularx}{\columnwidth}{lX}
-\toprule
-\textbf{Measure} & \textbf{Interpretation} \\ 
-\midrule
-{\emph{Indegree}} & Number of users that sent reply to the node \\
-{\emph{Weighted Indegree}} & Total number of received replies \\
-{\emph{Outdegree}} & Number of users that have received a reply from
-                     the node \\ 
-{\emph{Weighted Outdegree}} & Total number of sent replies \\
-{\emph{Edge Weight}}& Number of replies between the connecting nodes\\
-\bottomrule
-\end{tabularx}
-\caption{User-user centrality measures interpretation}
-\label{tbl:uucentralitymeasuresinter}
-\end{table}
+%Graph properties that are used in
+%analysing this graph and their contextual interpretations are shown in
+%Table~\ref{tbl:uucentralitymeasuresinter}.
 
-\subsection{Connected Components}
+%\begin{table}[!h]
+%\centering
+%\begin{tabularx}{\columnwidth}{lX}
+%\toprule
+%\textbf{Measure} & \textbf{Interpretation} \\ 
+%\midrule
+%{\emph{Indegree}} & Number of users that sent reply to the node \\
+%{\emph{Weighted Indegree}} & Total number of received replies \\
+%{\emph{Outdegree}} & Number of users that have received a reply from
+ %                    the node \\ 
+%{\emph{Weighted Outdegree}} & Total number of sent replies \\
+%{\emph{Edge Weight}}& Number of replies between the connecting nodes\\
+%\bottomrule
+%\end{tabularx}
+%\caption{User-user centrality measures interpretation}
+%\label{tbl:uucentralitymeasuresinter}
+%\end{table}
+
+\subsubsection{Connected Components}
 
 Reply conversations in the base graph are not inter connected, 
 which implies that the graph is actually consists of many 
@@ -384,31 +390,52 @@ conversations. Therefore, in the base graph many components
 should be expected, depending on activity of the CS
 accounts and their audience.
 
-
-\section{Results}\label{results}
-
-\subsection{Accounts Activity}
-
-The initial step was to measure accounts activity in terms of
-posting, such as tweeting and replying. Total activity reflects 
-accumulated statuses throughout the data collection phases, from 
-the Streaming and REST APIs. As shown in Figure~\ref{fig:totalactivity}, 
-{\emph{@virginmedia}} was found the most active CS account by 
-farm. 
-
-As the focus of this section is on customer service, it is 
-necessary to investigate post types to examine the purposes of 
-these accounts. The result shows that replies were at least 83.5\% 
-of accounts activity. This confirms that all chosen accounts are 
-primarily used to interact with customers, handling requests and 
-queries. Therefore, the resulting analyses will be based on replies only.
+\subsubsection{Coexistence Graph}
+As mentioned earlier, this graph is constructed to measure the indirect 
+engagement amongst the CS accounts. This graph is constructed 
+using the connected component that have more than one CS accounts in 
+base graph (common components). Figure~\ref{fig:ccmethod} and Figrue~\ref{fig:coexistencegraph2} 
+show example of three connected components and resulted coexistecne graph, 
+respectively.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=\columnwidth]{images/totalactivity.png}
-\caption{Total activity}
-\label{fig:totalactivity}
+\includegraphics[width=\columnwidth]{images/ccmethod.png}
+\caption{Example of common components (only names included for clarity)}
+\label{fig:ccmethod}
 \end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\columnwidth]{images/coexistencegraph2.png}
+\caption{Example for coexistence graph}
+\label{fig:coexistencegraph2}
+\end{figure}
+
+\section{Results}\label{results}
+
+%\subsection{Accounts Activity}
+
+%The initial step was to measure accounts activity in terms of
+%posting, such as tweeting and replying. Total activity reflects 
+%accumulated statuses throughout the data collection phases, from 
+%the Streaming and REST APIs. As shown in Figure~\ref{fig:totalactivity}, 
+%{\emph{@virginmedia}} was found the most active CS account by 
+%farm. 
+
+%As the focus of this section is on customer service, it is 
+%necessary to investigate post types to examine the purposes of 
+%these accounts. The result shows that replies were at least 83.5\% 
+%of accounts activity. This confirms that all chosen accounts are 
+%primarily used to interact with customers, handling requests and 
+%queries. Therefore, the resulting analyses will be based on replies only.
+
+%\begin{figure}[htb]
+%\centering
+%\includegraphics[width=\columnwidth]{images/totalactivity.png}
+%\caption{Total activity}
+%\label{fig:totalactivity}
+%\end{figure}
 
 % \begin{figure}[htb]
 % \centering
@@ -416,59 +443,6 @@ queries. Therefore, the resulting analyses will be based on replies only.
 % \caption{Accounts activity}
 % \label{fig:accountsactivity}
 % \end{figure}
-
-\subsection{Interaction and Users}
-
-Although the indicated ``working hours'' of CS accounts is important
-to evaluate activity, it is valuable to measure posts that are
-directed to those accounts from other users and examine them in line
-with CS accounts. Audience and their relations with the accounts can
-be analysed directly from the base graph (i.e. post-post). However, as
-user details are embedded inside post nodes, observing such
-relationships will not simple task to accomplish. Therefore, a
-user-user graph was built from the base graph. The resultant graph
-contains 3,521 user nodes and 5,938 edges, as shown in
-Figure~\ref{fig:userusergraph}. Although post-post relationship cannot
-have weight higher than one, user-user edge weight indicates number of
-posts in one direction, which explains the reduction in number of
-nodes and edges.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\columnwidth]{images/userusergraph.png}
-\caption{User-user graph}
-\label{fig:userusergraph}
-\end{figure}
-
-Based on Table~\ref{tbl:uucentralitymeasuresinter}, summary of the
-graph is presented below in Table~\ref{tbl:uucentralitymeasures}. The
-table says that {\emph{@virginmedia}} received that highest number of
-replies from 866 users with an average of 3.05 per user. Also, the
-same account scored highest in number of recipients. The difference
-between indegrees and outdegrees shows that apart from {\emph{@o2}},
-all accounts have outdegrees bigger that their
-indegrees. Additionally, the total number of sent replies is found to
-be more than the number of received replies; this may reflect that
-those replies were directed to non-reply posts.
-
-\begin{table}[!h]
-\centering
-\begin{tabularx}{\columnwidth}{l|rrc|rrc}
-\toprule
-\textbf{Measure} & \textbf{ind} & \textbf{w.ind} & \textbf{\%} & \textbf{out} & \textbf{w.oud} & \textbf{\%}\\ 
-\midrule
-{\emph{btcare}} & 330 & 995 & 3.02 & 485 & 1317 & 2.72\\
-{\emph{ee}} & 247 & 432 & 1.75 & 470 & 778 & 1.66 \\
-{\emph{giffgagg}} & 77 & 209 & 2.71 & 102 & 247 & 2.42 \\ 
-{\emph{o2}} & 293 & 463 & 1.58 & 260 & 479 & 1.84 \\
-{\emph{skyhelpteam}} & 147 & 254 & 1.73 & 305 & 504 & 1.65\\
-{\emph{virginmedia}} & 866 & 2645 & 3.05 & 1215 & 3421 & 2.82\\
-{\emph{vodaphoneukhelp}} & 166 & 403 & 2.43 & 302 & 660 & 2.19\\
-\bottomrule
-\end{tabularx}
-\caption{Centrality measures of user-user graph}
-\label{tbl:uucentralitymeasures}
-\end{table}
 
 \subsection{Delay}\label{results_delay}
 
@@ -507,6 +481,61 @@ ranged between 1.14 and 3.34 hours.
 \caption{Summary delays statistics}
 \label{tbl:delaystats}
 \end{table}
+
+\subsection{Interaction and Users}
+
+%Although the indicated ``working hours'' of CS accounts is important
+%to evaluate activity, it is valuable to measure posts that are
+%directed to those accounts from other users and examine them in line
+%with CS accounts. Audience and their relations with the accounts can
+%be analysed directly from the base graph (i.e. post-post). However, as
+%user details are embedded inside post nodes, observing such
+%relationships will not simple task to accomplish. Therefore, a
+
+To measure interaction amongst users, users graph graph was built 
+from the base graph. The resultant graph contains 3,521 user nodes 
+and 5,938 edges. %as shown in Figure~\ref{fig:userusergraph}. 
+Although status-to-status relationships cannot
+have weight higher than one, user-user edge weight indicates number of
+replies in one direction, which imply reduction in total number of
+nodes and edges.
+
+%\begin{figure}[htb]
+%\centering
+%\includegraphics[width=\columnwidth]{images/userusergraph.png}
+%\caption{User-user graph}
+%\label{fig:userusergraph}
+%\end{figure}
+
+Properties of the users graph are presented below in Table~\ref{tbl:uucentralitymeasures}. 
+The table says that {\emph{@virginmedia}} received that highest number of
+replies from 866 users with an average of 3.05 per user. Also, the
+same account scored highest in number of recipients. The difference
+between indegrees and outdegrees shows that apart from {\emph{@o2}},
+all accounts have outdegrees bigger that their
+indegrees. Additionally, the total number of sent replies is found to
+be more than the number of received replies; this may reflect that
+those replies were directed to non-reply posts.
+
+\begin{table}[!h]
+\centering
+\begin{tabularx}{\columnwidth}{l|rrc|rrc}
+\toprule
+\textbf{Measure} & \textbf{ind} & \textbf{w.ind} & \textbf{\%} & \textbf{out} & \textbf{w.oud} & \textbf{\%}\\ 
+\midrule
+{\emph{btcare}} & 330 & 995 & 3.02 & 485 & 1317 & 2.72\\
+{\emph{ee}} & 247 & 432 & 1.75 & 470 & 778 & 1.66 \\
+{\emph{giffgagg}} & 77 & 209 & 2.71 & 102 & 247 & 2.42 \\ 
+{\emph{o2}} & 293 & 463 & 1.58 & 260 & 479 & 1.84 \\
+{\emph{skyhelpteam}} & 147 & 254 & 1.73 & 305 & 504 & 1.65\\
+{\emph{virginmedia}} & 866 & 2645 & 3.05 & 1215 & 3421 & 2.82\\
+{\emph{vodaphoneukhelp}} & 166 & 403 & 2.43 & 302 & 660 & 2.19\\
+\bottomrule
+\end{tabularx}
+\caption{Centrality measures of user-user graph}
+\label{tbl:uucentralitymeasures}
+\end{table}
+
 
 \subsection{Conversation Components}
 

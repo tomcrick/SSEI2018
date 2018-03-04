@@ -232,13 +232,13 @@ conversations before they reach certain thresholds.
 
 The remainder of this paper is organised as follows: in
 Sections~\ref{casestudy} we introduce the case study of the UK
-telecoms industry; in Section~\ref{method} our methodology for this
+telecoms sector; in Section~\ref{method} our methodology for this
 project; Section~\ref{results} presents the results and key visual
 representations; Section~\ref{discussion} provides the main
 discussion; Section~\ref{conclusions} concludes the paper with a
 discussion of potential extensions and wider application of this work.
 
-\section{Case Study: UK Telecoms Industry}\label{casestudy}
+\section{Case Study: UK Telecoms Sector}\label{casestudy}
 
 Most UK households have access to both fixed broadband and a
 smartphone, with consumers moving seamlessly between fixed and mobile
@@ -533,14 +533,14 @@ coexistence graph.
 
 \subsection{Delay}\label{results_delay}
 
-Calculating delays is important to provide insights on performance 
-of CS team. As reply nodes in the base graph 
-include timestamp attribute, measuring delay is achieved
-by calculating time differences between end nodes on each
-edge. Table~\ref{tbl:delaystats} shows descriptive statistics for CS
-account delays. Interestingly, {\emph{@skyhelpteam}} was found with an
-average delay of 45.04 hours, although rest of the CS accounts' delay
-ranged between 1.14 and 3.34 hours.
+Calculating delays is important to provide insight on the performance
+of the various CS teams. As reply nodes in the base graph include
+timestamp attribute, measuring delay is achieved by calculating time
+differences between end nodes on each edge. Table~\ref{tbl:delaystats}
+shows key statistics for CS account delays; interestingly,
+{\emph{@skyhelpteam}} was found to have an average delay of 45.04
+hours, although the rest of the CS accounts' delay ranged between 1.14
+and 3.34 hours.
 
 % \begin{figure}[htb]
 % \centering
@@ -578,12 +578,12 @@ ranged between 1.14 and 3.34 hours.
 %user details are embedded inside post nodes, observing such
 %relationships will not simple task to accomplish. Therefore, a
 
-To measure interaction amongst users, users graph graph was built 
-from the base graph. The resultant graph contains 3,521 user nodes 
+To measure interaction amongst users, user-user graphs were built 
+from the base graph.; the resultant graph contains 3,521 user nodes 
 and 5,938 edges. %as shown in Figure~\ref{fig:userusergraph}. 
 Although edges in the base graph cannot
-have weight higher than one, edge weight in the users graph includes all 
-replies in from one user to another. Therefore, which number of nodes and edges
+have a weight greater than one, edge weight in the users graph includes all 
+replies from one user to another. Therefore, the number of nodes and edges
 in the users graph is lower that those in the base graph.
 
 %\begin{figure}[htb]
@@ -593,15 +593,16 @@ in the users graph is lower that those in the base graph.
 %\label{fig:userusergraph}
 %\end{figure}
 
-Properties of the users graph are presented below in Table~\ref{tbl:uucentralitymeasures}. 
-The table says that {\emph{@virginmedia}} received that highest number of
-replies from 866 users with an average of 3.05 per user. Also, the
-same account scored highest in number of recipients. The difference
-between indegrees and outdegrees shows that apart from {\emph{@o2}},
-all accounts have outdegrees bigger that their
-indegrees. Additionally, the total number of sent replies is found to
-be more than the number of received replies; this may reflect that
-those replies were directed to non-reply posts.
+Properties of the users graph are presented below in
+Table~\ref{tbl:uucentralitymeasures}; the table show that
+{\emph{@virginmedia}} received that highest number of replies from 866
+users with an average of 3.05 per user. Also, the same account scored
+highest in the number of recipients. The difference between indegrees
+and outdegrees shows that apart from {\emph{@o2}}, all accounts have
+outdegrees bigger that their indegrees. Additionally, the total number
+of sent replies is found to be more than the number of received
+replies; this may reflect that those replies were directed to
+non-reply posts.
 
 \begin{table}[!h]
 \centering
@@ -625,29 +626,30 @@ those replies were directed to non-reply posts.
 
 \subsection{Conversation Components}
 
-As covered in the methodology, each connected component in the
-base graph represent a conversation component that includes related
+As discussed in the methodology, each connected component in the base
+graph represent a conversation component that includes related
 replies. In this dataset, there were 3,289 conversation components
 with various number of replies. Observations of their sizes shows that
-the smallest component consists of one post, while the biggest
-component contains 81 posts.  The number of one-post
-components was 102, and they were all found belonging to CS
-accounts. Examining those singular components revealed that they were
-either original tweets that have not received replies, or replies to unavailable
-statuses. As covered earlier, unavailable replies are
-those that could not be captured due to a deletion or their posting
-account being protected. Because they do not have any length, and
-hence do not represent conversation, single-node
-components will be excluded from forthcoming analyses.
+the smallest component consists of one post, while the largest
+component contains 81 posts. The number of one-post components was
+102, and they were all found to belong to CS accounts. Examining those
+singular components revealed that they were either original tweets
+that have not received replies, or replies to unavailable statuses. As
+covered earlier, unavailable replies are those that could not be
+captured due to a deletion or the posting account being
+protected. Because they do not have any length, and hence do not
+represent conversation, single-node components have been excluded from
+forthcoming analyses.
 
-Additionally, the most components were found to be with
-two nodes. Those components were 1,188 and the oreintation of their
-edges direction suggest that most of these communications were from CS accounts
-and directed to customer's post. However, 25 of those conversations
-were initiated by customers.  As they are two-node components, it seems
-that those posts have not been answered by CS. Although other
-means of communications could have been used, such as direct messages,
-there were no visible sign of further interaction.
+Additionally, the majority components were found to have two
+nodes. Those components were 1,188 and the orientation of their edge's
+direction suggest that most of these communications were from CS
+accounts and directed to customer's post. However, 25 of those
+conversations were initiated by customers.  As they are two-node
+components, it seems that those posts have not been answered by the
+relevant CS account. Although other means of communications could have
+been used, such as direct messages, there were no visible sign of
+further interaction.
 
 % \begin{figure}[htb]
 % \centering
@@ -662,7 +664,7 @@ It is important to note that the size of connected components does not
 necessarily reflect length of conversations, although there is a
 strong correlation between size of component and length of its longest
 path (0.88). As can be seen in Figure~\ref{fig:ccsizepaths}, many
-components measures are positioned in a near perfect diagonal line;
+components measures are positioned in a near-perfect diagonal line;
 interestingly, the longest path in the biggest component (81
 nodes/posts) was only 1.
 
@@ -674,16 +676,15 @@ nodes/posts) was only 1.
 \end{figure}
 
 To illustrate properties of connected components, the largest 20
-components were chosen for visualisation, as shown in 
-Figure~\ref{fig:20ccpostpostgraph}. The findings show that 
-components with very high variations in indegree amongst 
-their nodes are mostly originate from CS. Examples
-of this claim is illustrated by the three big components in the
-figure. When observed, they were found to featuring advertising
-tweets that have received too many replies from Twitter users. 
-For example, the root node in the biggest component was a post 
-by {\emph{@o2}} that has indegree of 80, and all connected nodes 
-have indegree of zero, i.e. they were not answered. On
+components were chosen for visualisation, as shown in
+Figure~\ref{fig:20ccpostpostgraph}. The findings show that components
+with very high variations in indegree amongst their nodes mostly
+originate from CS accounts. An example of this claim is illustrated by
+the three big components in the figure; when observed, they were found
+to featuring advertising tweets that had received too many replies
+from Twitter users.  For example, the root node in the biggest
+component was a post by {\emph{@o2}} that has indegree of 80, and all
+connected nodes have indegree of zero, i.e. they were not answered. On
 the other hand, the longest path component was ranked the third
 biggest component. It was found with a single leaf, and all other
 nodes along the path were found with indegree=1 and outdegree=1,
@@ -754,6 +755,7 @@ given a colour code for identification as the legend clarifies.
 \label{fig:commoncc}
 \end{figure*}
 
+<<<<<<< HEAD
 To explore these relationships further, coexistence graph was
 constructed, as clarified in Section~\ref{graphconstruction}. 
 Edges in this graph are undirected and their weights indicate frequency
@@ -773,16 +775,16 @@ conversations; 21 components, although its degree tells that those
 conversations were shared with only three other CS teams. The heaviest
 edge existed between {\emph{@virginmedia}} and {\emph{@btcare}},
 followed by the edge between {\emph{@virginmedia}} and
-{\emph{@skyhelpteam}}. Also, edges of {\emph{@o2}} show that it was
-mostly appeared with {\emph{@ee}}, and for {\emph{@vodafoneukhelp}} it
-was {\emph{@ee}}.
+{\emph{@skyhelpteam}}. Also, edges of {\emph{@o2}} show that it mostly
+appeared with {\emph{@ee}}, and for {\emph{@vodafoneukhelp}} it was
+{\emph{@ee}}.
 
 Additional observation on the coexistence graph provides insight into
 uncovering more specific service areas within the specific industry or
-sector. This was found clear when the modularity of the graph was
-examined~\cite{Blondel2008}. The result has unfolded into two
+sector. This was clear when the modularity of the graph was
+examined~\cite{Blondel2008}; the result has unfolded into two
 communities, as shown in Figure~\ref{fig:modularityclassgraph}. Also,
-industry knowledge regarding these following CS teams: {\emph{@ee}},
+industry knowledge regarding the following CS teams: {\emph{@ee}},
 {\emph{@o2}}, and {\emph{@vodafoneukhelp}} belong to a domain that is
 mostly focused on mobile services, while {\emph{@skyhelpteam}},
 {\emph{@virginmedia}}, and {\emph{@btcare}} are mostly known to be
@@ -849,20 +851,19 @@ Initially, the performance of CS accounts and their popularity on
 Twitter were measured by an analysis of activity and users. From this
 perspective, {\emph{@virginmedia}} was found to have the highest
 volume of posts, the least diverse in terms of type of posts (99.7\%
-were replies) and with the highest number of customers served.
-
-The average delays of accounts ranged between 1.14 and
-3.34 hours, apart from {\emph{@skyhelpteam}} which was found with an average
-delay of 45.04 hours. This may indicate a management issue for the
-team, such as unclear social media strategy or staff resources. 
+were replies) and with the highest number of customers served. The
+average delays of accounts ranged between 1.14 and 3.34 hours, apart
+from {\emph{@skyhelpteam}} which was found with an average delay of
+45.04 hours. This may indicate a management issue for the team, such
+as unclear social media strategy or staff resources.
 
 Most CS teams have clearly specified working hours on their account
 page, apart from {\emph{@giffgaff}} and {\emph{@o2}}. Interestingly,
 these two accounts were found to have the lowest delay. Nevertheless,
 high availability, i.e. longer activity hours, was not found to
 significantly improve speed of reply to customers. For example, while
-{\emph{@giffgaff}} was observed active for longer hours, {\emph{@o2}}
-was found to be faster to reply.
+{\emph{@giffgaff}} was observed active for longer periods, {\emph{@o2}}
+was generally found to be faster to reply.
 
 Although the data shows that no CS team has been in a direct
 engagement with a competitor, analysis of common/shared connected
@@ -873,24 +874,24 @@ customers were found to be initiators of competing conversations by
 making use of the Twitter {\emph{@-mention}} feature to bring
 different rivals into conversations. In contrast to phone, letter or
 email, complaints that are made on social media are open for the
-public to read and follow, and therefore can be potentially damaging
-to the business reputation if not handled appropriately. Therefore, it
-was not surprising to see improvement in the speed of response in a
-few instances where competitors were included in the same
+public to read and follow, and can be potentially reputationally
+damaging if not handled appropriately. Therefore, it was not
+surprising to see improvement in the speed of response in a few
+instances where competitors were included in the same
 conversation. This shows that with the openness of social media
-platforms, such as Twitter, customers have more chance to obtain
+platforms, such as Twitter, customers may have more chance to obtain
 better deals or speedy resolution of their
-problems~\cite{einwiller+steilen:2015}. In turn, this nature of
-publicly posted complaints add more pressure on CS teams to improve
+problems~\cite{einwiller+steilen:2015}. In turn, this approach of
+publicly-posting complaints add pressure onto CS teams to improve
 their social media engagement, especially when business rivals are
-included by customers~\cite{gregoire-et-al:2015}. 
+included by customers~\cite{gregoire-et-al:2015}.
 
 Some of these issues are particularly pertinent for the mobile virtual
-network operators (MVNOs) -- such as Virgin, giffgaff and Sky -- who
-use the infrastructure of the four main mobile network operators
-(MNOs), as presented in Section~\ref{casestudy}. While this may not
-directly affect CS operations, especially as many customers are
-unlikely to be aware of whether their company owns any underlying
+network operators (MVNOs) -- such as Virgin Mobile, giffgaff and Sky
+Mobie -- who use the infrastructure of the main mobile network
+operators (MNOs), as presented in Section~\ref{casestudy}. While this
+may not directly affect CS operations, especially as many customers
+are unlikely to be aware of whether their company owns any underlying
 network infrastructure, it may have operational and/or performance
 impacts on the virtual operators depending on their service-level
 agreements with the infrastructure operators.

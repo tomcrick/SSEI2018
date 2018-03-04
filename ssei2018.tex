@@ -278,7 +278,7 @@ completed in 2016; the merger did not materially increase EE's market
 share, but as a result of the merger EE's useable spectrum share
 increased. There have been no other significant new entrants or
 changes in market share since.}, giffgaff, O2, Sky, Virgin Media and
-Vodaphone. The choices were intended to represent companies of various
+Vodafone. The choices were intended to represent companies of various
 sizes, history and range of services provided. While a few companies
 only had one account on Twitter, some of them have multiple
 accounts alongside the primary Twitter account; in those instances,
@@ -325,15 +325,15 @@ Returned statuses from the Streaming API may represent reply-to
 statuses that have not been collected previously. It was found that
 most missing statuses were either posted before the data collection
 started, were mentions, or that the user account is protected. This
-issue could have a potenially significant impact on the quality of the
-analysis; therefore, once statuses are returned from the stream endpoint, 
-their type is checked first (tweet, retweet, etc). If status is a reply, 
-the ID of the status to which it was replying is extracted from 
-{\emph{in\_reply\_to\_status\_id}}. Then, using the extracted ID, we 
-check if the replied-to status has already been collected and present 
-in the dataset or not. If not, the REST API is then used to collect 
-them. This process runs recursively for newly-collected replies until 
-no further replies are available. Unavailable statuses are often 
+issue could have a significant impact on the quality of the analysis;
+therefore, once statuses are returned from the stream endpoint, their
+type is checked first (tweet, retweet, etc). If status is a reply, the
+ID of the status to which it was replying is extracted from
+{\emph{in\_reply\_to\_status\_id}}. Then, using the extracted ID, we
+check if the replied-to status has already been collected and present
+in the dataset or not. If not, the REST API is then used to collect
+them. This process runs recursively for newly-collected replies until
+no further replies are available. Unavailable statuses are often
 results from either deletion or protected accounts.
 
 An analysis of changes on the graph after the second phase of data
@@ -356,7 +356,7 @@ analyses.
 
 The main data structure of conversations on Twitter suggests
 status-to-status {\footnote{We use `status' to refer to any type of post, tweet,
-retweet, reply, or quote.}} relatioship. In graph concept, statuses
+retweet, reply, or quote.}} relationship. In graph concept, statuses
 represent nodes that are linked by directed edges. Therefore, the
 study follows a graph construction approach in conducting analysis and
 produces three graphs. First, {\emph{base}} graph is constructed to
@@ -375,7 +375,7 @@ attributes to nodes. The information used in this study are
 {\emph{text}}, and {\emph{CS}}. The additional {\emph{CS}} value is a
 binary digit set to distinguish accounts -- it is set to 1 if the status
 belongs to one of the CS accounts, otherwise it is 0. This value is
-required to eleminate the need for user checks in forecoming
+required to eliminate the need for user checks in forthcoming
 analyses. Figure~\ref{fig:replychaingraph} illustrates the conceptual base
 graph. As a reply can be directed to only one other status, no edge is
 expected to have weight value other than 1, and no reply status can
@@ -423,7 +423,7 @@ To examine relationships between users, five network graph properties
 are measured. There were no special case nodes or edges in this graph,
 as observed in the base graph. For edges, their orientation indicate
 direction of replies, while weight reflects number of replies on the
-edge.  Node indgeree reflect number of users that have sent reply to
+edge.  Node indegree reflect number of users that have sent reply to
 the node, and outdegree indicates the number of users that have
 received reply from the node. Also, weighted measure of indegree and
 outdegree indicate total received and sent replies, respectively.
@@ -479,12 +479,11 @@ appeared. For each component, name attributes for nodes with CS value
 equal to 1 are extracted.  If more than one CS account was found,
 those accounts are used to created nodes and edges for the coexistence
 graph. Thus, nodes are generated from CS names, and edges indicate
-common conversation between linked nodes. Subsequently, if the edge 
+common conversation between linked nodes. Subsequently, if the edge
 already exists, its weight is increased.  For an illustration of this
 process, see Figure~\ref{fig:ccmethod} and
-Figure~\ref{fig:coexistencegraph2} 
-to exemplify three common components and the resultant
-coexistence graph.
+Figure~\ref{fig:coexistencegraph2} to exemplify three common
+components and the resultant coexistence graph.
 
 \begin{figure}[htb]
 \centering
@@ -737,15 +736,16 @@ individual CS accounts.
 
 \subsection{Coexistence and Competition}
 
-As presented eariler, connected components in the base graph represent 
-individual conversations. Therefore, those components were used to uncover 
-indirect engagement amongst CS accounts. As reply nodes in the graph
-include the account name of the user, it is possible to identify those components with 
-more than one CS account. For each connected component, the names in reply nodes
-are checked if they belong to a CS account or not. Components with more than
-one distinct CS name are then marked as coexistence component. The results show
-that there were 39 coexistence components in total; 38 include two CS accounts, and one
-includes three accounts. The graph presented in
+As presented earlier, connected components in the base graph represent
+individual conversations. Therefore, those components were used to
+uncover indirect engagement amongst CS accounts. As reply nodes in the
+graph include the account name of the user, it is possible to identify
+those components with more than one CS account. For each connected
+component, the names in reply nodes are checked if they belong to a CS
+account or not. Components with more than one distinct CS name are
+then marked as coexistence component. The results show that there were
+39 coexistence components in total; 38 include two CS accounts, and
+one includes three accounts. The graph presented in
 Figure~\ref{fig:commoncc} shows those components, with each CS account
 given a colour code for identification as the legend clarifies.
 
